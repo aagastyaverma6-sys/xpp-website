@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examples — X++ (XPlusPlus)</title>
+  <meta name="description" content="Copy-paste X++ example programs: hello world, fibonacci, fizzbuzz, prime sieve, word counting, safe/fail error handling, input games and more.">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/xpp-logo.png" alt="X++ logo">
+        <span>X<span class="plus">++</span></span>
+        <span class="ver">v0.4.1</span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="docs.html">Learn</a>
+        <a href="examples.html" class="active">Examples</a>
+        <a href="playground.html">Playground</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        </button>
+        <a class="btn ghost small" href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+      <button class="icon-btn nav-burger" data-nav-burger aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:56px">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:30px">
+        <span class="kicker">Copy · paste · run</span>
+        <h1>Examples you can <span class="grad-text">steal</span></h1>
+        <p class="lead">Every snippet below is real, tested X++ — the expected output shown is produced by the actual native VM. Hit <b>▶ playground</b> to run it in your browser, or copy it into <span class="code-inline">hello.xp</span> and run <span class="code-inline">x run hello.xp</span>.</p>
+      </div>
+
+      <div class="example-filters" id="ex-filters">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="basics">Basics</button>
+        <button class="tab" data-filter="functions">Functions</button>
+        <button class="tab" data-filter="collections">Lists &amp; dicts</button>
+        <button class="tab" data-filter="algorithms">Algorithms</button>
+        <button class="tab" data-filter="errors">safe / fail</button>
+        <button class="tab" data-filter="input">Input</button>
+      </div>
+
+      <div class="grid cols-2" id="ex-grid">
+
+        <!-- ================================================== hello -->
+        <div class="card example-card" data-tags="basics">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">basics</span></div>
+            <h3>Hello, X++</h3>
+            <p class="desc">The classic first program — straight from the repo's <i>examples/hello.xp</i>.</p>
+          </div>
+          <pre data-lang="xpp" data-name="hello.xp" data-open-in-playground="yes">RNM=ZITR
+
+out "Hello from X++ v0.3!"</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; Hello from X++ v0.3!</span>
+          </div>
+        </div>
+
+        <!-- ================================================== fib -->
+        <div class="card example-card" data-tags="functions algorithms">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">functions</span><span class="tag">recursion</span></div>
+            <h3>Fibonacci, recursive</h3>
+            <p class="desc">The README's poster child. Recursion, <span class="code-inline">if / end</span> and a counting loop in 10 lines.</p>
+          </div>
+          <pre data-lang="xpp" data-name="fib.xp" data-open-in-playground="yes">RNM=ZITR
+
+fn fib(n):
+  if n &lt;= 1:
+    return n
+  end
+  return fib(n-1) + fib(n-2)
+end
+
+loop i from 0 to 10:
+  out i, fib(i)
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; 0 0 · 1 1 · 2 1 · … · 10 55</span>
+          </div>
+        </div>
+
+        <!-- ================================================== fizzbuzz -->
+        <div class="card example-card" data-tags="basics algorithms">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">basics</span><span class="tag">algorithm</span></div>
+            <h3>FizzBuzz</h3>
+            <p class="desc">The interview classic — with <span class="code-inline">elif</span> chains and modulo.</p>
+          </div>
+          <pre data-lang="xpp" data-name="fizzbuzz.xp" data-open-in-playground="yes">RNM=ZITR
+
+loop n from 1 to 15:
+  if n % 15 == 0:
+    out "FizzBuzz"
+  elif n % 3 == 0:
+    out "Fizz"
+  elif n % 5 == 0:
+    out "Buzz"
+  else:
+    out n
+  end
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; 1 · 2 · Fizz · 4 · Buzz · … · FizzBuzz</span>
+          </div>
+        </div>
+
+        <!-- ================================================== primes -->
+        <div class="card example-card" data-tags="algorithms collections">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">algorithms</span><span class="tag">lists</span></div>
+            <h3>Prime sieve</h3>
+            <p class="desc">Sieve of Eratosthenes with a boolean list — <span class="code-inline">push</span>, indexing and nested loops.</p>
+          </div>
+          <pre data-lang="xpp" data-name="primes.xp" data-open-in-playground="yes">RNM=ZITR
+
+limit = 50
+is_prime = []
+loop i from 0 to limit:
+  push true to is_prime
+end
+is_prime[0] = false
+is_prime[1] = false
+
+loop n from 2 to limit:
+  if is_prime[n]:
+    m = n * n
+    while m &lt;= limit:
+      is_prime[m] = false
+      m = m + n
+    end
+  end
+end
+
+count = 0
+loop n from 2 to limit:
+  if is_prime[n]:
+    out n
+    count = count + 1
+  end
+end
+out "primes found:", count</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; 2 · 3 · 5 · … · 47 · primes found: 15</span>
+          </div>
+        </div>
+
+        <!-- ================================================== collections -->
+        <div class="card example-card" data-tags="collections">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">lists &amp; dicts</span></div>
+            <h3>Collections tour</h3>
+            <p class="desc">Lists, <span class="code-inline">push</span>, dicts with dot-access, <span class="code-inline">keys</span> — the everyday toolkit.</p>
+          </div>
+          <pre data-lang="xpp" data-name="collections.xp" data-open-in-playground="yes">RNM=ZITR
+
+nums = [1, 2, 3]
+push 4 to nums
+out "list:", nums
+out "len:", len(nums), "sum:", sum(nums)
+
+user = {"name": "Aagastya", "lang": "X++"}
+user.version = "0.4.1"
+out user
+out "keys:", keys(user)
+loop k in keys(user):
+  out " ", k, "=", user[k]
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; list: [1, 2, 3, 4] · len: 4 sum: 10 · …</span>
+          </div>
+        </div>
+
+        <!-- ================================================== wordcount -->
+        <div class="card example-card" data-tags="collections algorithms">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">dicts</span><span class="tag">algorithm</span></div>
+            <h3>Word counting</h3>
+            <p class="desc">The dict pattern you'll use everywhere: <span class="code-inline">contains</span> check → increment or seed.</p>
+          </div>
+          <pre data-lang="xpp" data-name="wordcount.xp" data-open-in-playground="yes">RNM=ZITR
+
+words = ["xpp", "is", "fast", "xpp", "is", "easy", "xpp", "rocks"]
+counts = {}
+loop w in words:
+  if contains(counts, w):
+    counts[w] = counts[w] + 1
+  else:
+    counts[w] = 1
+  end
+end
+
+out "word counts:"
+loop w in sorted(keys(counts)):
+  out " ", w, "x" + str(counts[w])
+end
+out "unique words:", len(counts)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; easy x1 · fast x1 · is x2 · rocks x1 · xpp x3 · unique: 5</span>
+          </div>
+        </div>
+
+        <!-- ================================================== safe -->
+        <div class="card example-card" data-tags="errors functions">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">safe / fail</span><span class="tag">functions</span></div>
+            <h3>Errors that don't kill your program</h3>
+            <p class="desc"><span class="code-inline">safe / fail</span> catches runtime errors — even ones thrown deep inside called functions.</p>
+          </div>
+          <pre data-lang="xpp" data-name="safe.xp" data-open-in-playground="yes">RNM=ZITR
+
+safe:
+  x = 1 / 0
+  out "never reached"
+fail e:
+  out "caught:", e
+end
+
+fn risky(n):
+  if n &lt; 0:
+    return 0 - n
+  end
+  return 1 / n
+end
+
+loop n in [4, 0, -7]:
+  safe:
+    out "risky(" + str(n) + ") =", risky(n)
+  fail e:
+    out "risky(" + str(n) + ") failed:", e
+  end
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; caught: division by zero · risky(4) = 0.25 · …</span>
+          </div>
+        </div>
+
+        <!-- ================================================== guess -->
+        <div class="card example-card" data-tags="input algorithms">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">input</span><span class="tag">game</span></div>
+            <h3>Number guessing game</h3>
+            <p class="desc">A real REPL game with <span class="code-inline">in</span> and <span class="code-inline">while true</span>. In the playground, put your guesses in the <b>Input</b> box first — try <i>50, 25, 37</i>.</p>
+          </div>
+          <pre data-lang="xpp" data-name="guess.xp" data-open-in-playground="yes">RNM=ZITR
+
+secret = 37
+tries = 0
+
+while true:
+  g = int(in "Your guess (1-100): ")
+  tries = tries + 1
+  if g == secret:
+    out "Correct! You got it in", tries, "tries."
+    break
+  elif g &lt; secret:
+    out "Too low!"
+  else:
+    out "Too high!"
+  end
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; Too high! · Too low! · Correct! You got it in 3 tries.</span>
+          </div>
+        </div>
+
+        <!-- ================================================== strings -->
+        <div class="card example-card" data-tags="basics">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">strings</span></div>
+            <h3>String toolbox</h3>
+            <p class="desc">Concatenation, repetition, negative indexing, membership, and looping over a list of words.</p>
+          </div>
+          <pre data-lang="xpp" data-name="strings.xp" data-open-in-playground="yes">RNM=ZITR
+
+s = "X++ makes pseudocode real"
+out "len:", len(s)
+out "first:", s[0], "last:", s[-1]
+out "sorted:", sorted([5, 3, 9, 1])
+out "repeat:", "x" + "p" * 3
+out "contains:", contains(s, "pseudocode")
+
+loop word in ["write", "pseudocode", "ship", "it"]:
+  out word
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; len: 25 · first: X last: l · repeat: xppp · …</span>
+          </div>
+        </div>
+
+        <!-- ================================================== countdown -->
+        <div class="card example-card" data-tags="basics algorithms">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">loops</span></div>
+            <h3>Countdown &amp; step</h3>
+            <p class="desc">Counting loops are inclusive of both ends; a negative <span class="code-inline">step</span> counts down.</p>
+          </div>
+          <pre data-lang="xpp" data-name="countdown.xp" data-open-in-playground="yes">RNM=ZITR
+
+# negative step counts down (inclusive of both ends)
+loop i from 10 to 0 step -2:
+  out i
+end
+
+out "liftoff!"</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; 10 · 8 · 6 · 4 · 2 · 0 · liftoff!</span>
+          </div>
+        </div>
+
+        <!-- ================================================== bench -->
+        <div class="card example-card" data-tags="algorithms">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">benchmark</span></div>
+            <h3>Hot loop (1,000,000 iterations)</h3>
+            <p class="desc">From the repo's <i>bench/</i> suite. The web VM takes a moment; native ZJIT does this in ~50&nbsp;ms.</p>
+          </div>
+          <pre data-lang="xpp" data-name="bench.xp" data-open-in-playground="yes">RNM=ZITR
+
+# The native ZJIT engine does this ~100x faster.
+total = 0
+loop i from 1 to 1000000:
+  total = total + i
+end
+out "sum 1..1000000 =", total</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; sum 1..1000000 = 500000500000</span>
+          </div>
+        </div>
+
+        <!-- ================================================== fib_fast -->
+        <div class="card example-card" data-tags="functions algorithms">
+          <div class="ex-head">
+            <div class="ex-tags"><span class="tag accent">functions</span><span class="tag">iterative</span></div>
+            <h3>Fibonacci, iterative</h3>
+            <p class="desc"><i>examples/fib_fast.xp</i> from the repo — O(n) time, instant even for fib(30) in the browser.</p>
+          </div>
+          <pre data-lang="xpp" data-name="fib_fast.xp" data-open-in-playground="yes">RNM=ZITR
+
+fn fib_fast(n):
+  a = 0
+  b = 1
+  if n == 0:
+    return 0
+  end
+  if n == 1:
+    return 1
+  end
+  loop i from 2 to n:
+    c = a + b
+    a = b
+    b = c
+  end
+  return b
+end
+
+out fib_fast(30)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">output:&nbsp; 832040</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="f-brand">
+          <a class="brand" href="index.html">
+            <img src="assets/img/xpp-logo.png" alt="X++ logo">
+            <span>X<span class="plus">++</span> <span style="font-weight:500;color:var(--muted)">XPlusPlus</span></span>
+          </a>
+          <p>An intent-driven programming language by Aagastya Verma / Atom Software. Same pseudocode, same ease — now on a real native VM.</p>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h4>Site</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="docs.html">Learn</a></li>
+              <li><a href="examples.html">Examples</a></li>
+              <li><a href="playground.html">Playground</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Project</h4>
+            <ul>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">GitHub ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/blob/main/RELEASE_NOTES_v0.4.1.md" target="_blank" rel="noopener">Release notes ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/issues" target="_blank" rel="noopener">Issues ↗</a></li>
+              <li><a href="https://www.reddit.com/r/xpplang/" target="_blank" rel="noopener">r/xpplang ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>X++ v0.4.1 “Bare Metal” · GPL-3.0-or-later · Aagastya Verma / Atom Software</span>
+        <span>Programming for everyone.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/highlight.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* example filtering */
+    (function () {
+      var btns = document.querySelectorAll('#ex-filters .tab');
+      var cards = document.querySelectorAll('#ex-grid .example-card');
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          btns.forEach(function (x) { x.classList.toggle('active', x === b); });
+          var f = b.getAttribute('data-filter');
+          cards.forEach(function (c) {
+            var tags = c.getAttribute('data-tags') || '';
+            c.style.display = (f === 'all' || tags.indexOf(f) !== -1) ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

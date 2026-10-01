@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X++ (XPlusPlus) — Programming For Everyone</title>
+  <meta name="description" content="X++ is an intent-driven programming language: write strict pseudocode, type one command, and it runs — on a zero-dependency native VM. Ease of Python, speed of native code.">
+  <meta property="og:title" content="X++ (XPlusPlus) — Programming For Everyone">
+  <meta property="og:description" content="Same pseudocode. Same ease. Now a real native VM. Write pseudocode, type x run app.xp — boom.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/xpp-logo.png" alt="X++ logo">
+        <span>X<span class="plus">++</span></span>
+        <span class="ver">v0.4.1</span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="docs.html">Learn</a>
+        <a href="examples.html">Examples</a>
+        <a href="playground.html">Playground</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        </button>
+        <a class="btn ghost small" href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+      <button class="icon-btn nav-burger" data-nav-burger aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================ hero -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badges fade-up">
+              <span class="badge"><span class="dot green"></span>v0.4.1 · “Bare Metal”</span>
+              <span class="badge"><span class="dot violet"></span>Native VM</span>
+              <span class="badge"><span class="dot cyan"></span>Win · Linux · macOS</span>
+            </div>
+            <h1 class="fade-up d1">Pseudocode that<br><span class="grad-text">actually runs.</span></h1>
+            <p class="lead fade-up d2">
+              X++ is an intent-driven language by <b>Aagastya Verma / Atom Software</b>.
+              Write strict pseudocode — or loose English steps for the AI mode — type one command,
+              and it <i>booms</i>. The ease of Python, the speed of native code, zero dependencies.
+            </p>
+            <div class="hero-actions fade-up d3">
+              <a class="btn primary" href="playground.html">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.9l11-6.86a1.05 1.05 0 0 0 0-1.8l-11-6.86A1.05 1.05 0 0 0 8 5.14z"/></svg>
+                Try the playground
+              </a>
+              <a class="btn ghost" href="docs.html">Learn X++ in 15 min</a>
+            </div>
+            <div class="hero-stats fade-up d3">
+              <div class="stat"><div class="n">1.9×</div><div class="l">faster than CPython on hot loops (ZITR)</div></div>
+              <div class="stat"><div class="n">7.6×</div><div class="l">faster still with ZJIT native AOT</div></div>
+              <div class="stat"><div class="n">0</div><div class="l">dependencies in the native VM (C++17)</div></div>
+              <div class="stat"><div class="n">1</div><div class="l">command to install &amp; run</div></div>
+            </div>
+          </div>
+
+          <div class="fade-up d2">
+            <div class="code-block">
+              <div class="cb-head">
+                <span class="cb-dots"><i></i><i></i><i></i></span>
+                <span class="cb-name">fib.xp</span>
+                <span class="cb-actions"><a class="copy-btn" href="playground.html" style="text-decoration:none">▶ run it live</a></span>
+              </div>
+              <pre data-lang="xpp">RNM=ZITR
+
+fn fib(n):
+  if n &lt;= 1:
+    return n
+  end
+  return fib(n-1) + fib(n-2)
+end
+
+loop i from 0 to 10:
+  out i, fib(i)
+end</pre>
+            </div>
+            <div class="code-block">
+              <div class="cb-head">
+                <span class="cb-dots"><i></i><i></i><i></i></span>
+                <span class="cb-name">x run fib.xp</span>
+              </div>
+              <pre class="mini" data-lang="sh">0 0
+1 1
+2 1
+3 2
+4 3
+5 5
+6 8
+7 13
+8 21
+9 34
+10 55</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== features -->
+    <section class="section" id="why">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="kicker">Why X++</span>
+          <h2>Everything easy. Nothing missing.</h2>
+          <p class="lead">X++ was designed around one idea: if you can write the steps in a notebook, you can run them. No types to annotate, no pointers, no build files, no manual memory management.</p>
+        </div>
+        <div class="grid cols-3">
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+            <h3>Ease of Python</h3>
+            <p>Pseudocode syntax with automatic garbage collection. Write the code, type <span class="code-inline">x run app.xp</span>, done.</p>
+            <div class="sub">fn / if / loop / out / push</div>
+          </div>
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM2 9h2M2 15h2M20 9h2M20 15h2M9 2v2M15 2v2M9 20v2M15 20v2"/></svg></div>
+            <h3>Speed of native code</h3>
+            <p>ZITR is a fast NaN-boxed stack VM; ZJIT compiles your <span class="code-inline">.xp</span> straight through C++ to machine code.</p>
+            <div class="sub">fib(28) in 10 ms · sum 1..5M in 50 ms</div>
+          </div>
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg></div>
+            <h3>Runs everywhere</h3>
+            <p>The VM and native backend are pure C++17 and build on Windows, Linux and macOS. Same <span class="code-inline">.xbc</span> bytecode runs anywhere.</p>
+            <div class="sub">g++ / clang · no runtime deps</div>
+          </div>
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
+            <h3>One-command setup</h3>
+            <p><span class="code-inline">setup.bat</span> / <span class="code-inline">./setup.sh</span> installs everything by itself — Python, a compiler, the VM, the <span class="code-inline">x</span> command, even the X++ file icon.</p>
+            <div class="sub">download → unpack → setup → boom</div>
+          </div>
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5.6 1.2.6 2.2h6c0-1 0-1.7.6-2.2A6 6 0 0 0 12 3zM9 19h6M10 22h4"/></svg></div>
+            <h3>An AI intent mode</h3>
+            <p><span class="code-inline">RNM=ITR</span> hands your loose English steps to an LLM (via OpenRouter) and compiles them into a runnable program.</p>
+            <div class="sub">write intent, not syntax</div>
+          </div>
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3>safe / fail built in</h3>
+            <p>Real exception handling in pseudocode clothing — plus closures, deep recursion to 20,000+ frames and short-circuit <span class="code-inline">and / or</span>.</p>
+            <div class="sub">29-test golden regression suite</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================== modes -->
+    <section class="section" id="modes">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Engines</span>
+          <h2>Six ways to run the same code</h2>
+          <p class="lead">Pick an engine with a single header line — or let <span class="code-inline">x</span> auto-detect it. The language never changes; only the machine underneath does.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Header</th><th>Engine</th><th>What it is</th><th>Needs</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>RNM=ZITR</code></td><td><b>Native fast VM</b> (default)</td><td>NaN-boxed stack VM running <code>.xbc</code> bytecode</td><td><code>xppvm</code> (auto-built)</td></tr>
+              <tr><td><code>RNM=ZCOM</code></td><td>Strict bytecode AOT</td><td><code>.xp</code> → <code>.xbc</code>, verifiable &amp; disassemblable</td><td><code>xppvm</code></td></tr>
+              <tr><td><code>RNM=ZJIT</code></td><td>Native AOT backend</td><td><code>.xp</code> → C++ → machine code. Runs fastest</td><td><code>xppvm</code> + system C++ compiler</td></tr>
+              <tr><td><code>RNM=XCOM</code></td><td>Legacy strict AOT</td><td><code>.xp</code> → Python bytecode (v0.3, kept)</td><td>Python</td></tr>
+              <tr><td><code>RNM=XITR</code></td><td>Legacy fast VM</td><td>Python <code>exec</code> code-object cache (v0.3, kept)</td><td>Python</td></tr>
+              <tr><td><code>RNM=ITR</code></td><td>AI intent compiler</td><td>LLM translates English steps → executable</td><td>OpenRouter key</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== benchmarks -->
+    <section class="section" id="benchmarks">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Benchmarks</span>
+          <h2>Native speed, pseudocode soul</h2>
+          <p class="lead">Measured on Linux x86-64, CPython 3.11, g++ 12.2 — run them yourself with <span class="code-inline">--bench</span>. Lower is better.</p>
+        </div>
+
+        <div class="bench-row">
+          <div class="bench-title">
+            <span class="name">sum 1 … 5,000,000</span>
+            <span class="meta">bench/sum_loop.xp</span>
+          </div>
+          <div class="bars">
+            <div class="bar"><span class="who">XITR (CPython)</span><div class="track"><div class="fill f-xitr" style="width:100%"></div></div><span class="val">381 ms</span></div>
+            <div class="bar"><span class="who">ZITR (VM)</span><div class="track"><div class="fill f-zitr" style="width:53%"></div></div><span class="val">202 ms</span></div>
+            <div class="bar"><span class="who">ZJIT (native AOT)</span><div class="track"><div class="fill f-zjit" style="width:13.5%"></div></div><span class="val">50 ms</span></div>
+          </div>
+        </div>
+
+        <div class="bench-row">
+          <div class="bench-title">
+            <span class="name">fib(28), recursive</span>
+            <span class="meta">bench/fib_rec.xp</span>
+          </div>
+          <div class="bars">
+            <div class="bar"><span class="who">XITR (CPython)</span><div class="track"><div class="fill f-xitr" style="width:100%"></div></div><span class="val">55 ms</span></div>
+            <div class="bar"><span class="who">ZITR (VM)</span><div class="track"><div class="fill f-zitr" style="width:100%"></div></div><span class="val">91 ms</span></div>
+            <div class="bar"><span class="who">ZJIT (native AOT)</span><div class="track"><div class="fill f-zjit" style="width:18%"></div></div><span class="val">10 ms</span></div>
+          </div>
+        </div>
+
+        <p style="color:var(--faint);font-size:.88rem">ZJIT times are native execution only — the first build takes ~1&nbsp;s and is cached (rebuilt only when the source changes). A register-based JIT is on the roadmap to close the last gap to hand-written C.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== install -->
+    <section class="section" id="install">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Get started</span>
+          <h2>Download → unpack → setup → boom</h2>
+          <p class="lead">The setup script installs <i>everything</i> by itself: Python (only if missing), g++/clang, the native VM, the <span class="code-inline">x</span> command on PATH, and the X++ file logo in your OS.</p>
+        </div>
+
+        <div data-tabs>
+          <div class="tabs">
+            <button class="tab active" data-tab="tab-win">Windows</button>
+            <button class="tab" data-tab="tab-mac">macOS</button>
+            <button class="tab" data-tab="tab-linux">Linux</button>
+          </div>
+
+          <div class="tab-panel active" id="tab-win">
+            <pre data-lang="sh" data-name="PowerShell / Explorer">:: download the repo zip, unpack it, then double-click setup.bat
+:: …or from a terminal:
+setup.bat
+
+:: write your first program
+echo out "hello world" &gt; hello.xp
+x run hello.xp</pre>
+          </div>
+
+          <div class="tab-panel" id="tab-mac">
+            <pre data-lang="sh" data-name="Terminal — or double-click setup.command">git clone https://github.com/aagastyaverma6-sys/XPP.git
+cd XPP
+./setup.sh
+
+echo 'out "hello world"' &gt; hello.xp
+x run hello.xp</pre>
+          </div>
+
+          <div class="tab-panel" id="tab-linux">
+            <pre data-lang="sh" data-name="Terminal">git clone https://github.com/aagastyaverma6-sys/XPP.git
+cd XPP
+./setup.sh
+
+echo 'out "hello world"' &gt; hello.xp
+x run hello.xp</pre>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:22px">
+          Optional AI mode (<span class="code-inline">RNM=ITR</span>) needs an OpenRouter key:
+          <span class="code-inline">export OPENROUTER_API_KEY=…</span> then <span class="code-inline">x run ai_demo.xp --mode ITR</span>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== ecosystem -->
+    <section class="section" id="ecosystem">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="kicker">Ecosystem</span>
+          <h2>More than a language</h2>
+        </div>
+        <div class="grid cols-3">
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+            <h3>VS Code extension</h3>
+            <p>Syntax highlighting, an X++ file icon theme, and a one-click Code Runner button — wired up automatically by setup.</p>
+          </div>
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 9h4M7 13h8M7 9v4"/><path d="M8 21h8"/></svg></div>
+            <h3>Xite editor</h3>
+            <p>A bundled beginner-friendly editor (<span class="code-inline">Xite.exe</span>) for writing and running X++ without touching a terminal.</p>
+          </div>
+          <div class="card hover">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+            <h3>Portable .xbc bytecode</h3>
+            <p>Compile once with <span class="code-inline">x compile app.xp --emit-xbc app.xbc</span>, disassemble it, and run the same file on any OS.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== CTA -->
+    <section class="section">
+      <div class="wrap">
+        <div class="cta-band">
+          <h2>Ready to write pseudocode<br>that <span class="grad-text">ships</span>?</h2>
+          <p>Try X++ right now in your browser — no install, no account. The same strict pseudocode runs on the native VM when you download it.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="playground.html">Open the playground</a>
+            <a class="btn ghost" href="examples.html">Browse examples</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="f-brand">
+          <a class="brand" href="index.html">
+            <img src="assets/img/xpp-logo.png" alt="X++ logo">
+            <span>X<span class="plus">++</span> <span style="font-weight:500;color:var(--muted)">XPlusPlus</span></span>
+          </a>
+          <p>An intent-driven programming language by Aagastya Verma / Atom Software. Same pseudocode, same ease — now on a real native VM.</p>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h4>Site</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="docs.html">Learn</a></li>
+              <li><a href="examples.html">Examples</a></li>
+              <li><a href="playground.html">Playground</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Project</h4>
+            <ul>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">GitHub ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/blob/main/RELEASE_NOTES_v0.4.1.md" target="_blank" rel="noopener">Release notes ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/issues" target="_blank" rel="noopener">Issues ↗</a></li>
+              <li><a href="https://www.reddit.com/r/xpplang/" target="_blank" rel="noopener">r/xpplang ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>X++ v0.4.1 “Bare Metal” · GPL-3.0-or-later · Aagastya Verma / Atom Software</span>
+        <span>Programming for everyone.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/highlight.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground — X++ (XPlusPlus)</title>
+  <meta name="description" content="Run X++ pseudocode right in your browser — a faithful port of the native ZITR VM semantics. No install, no account.">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/xpp-logo.png" alt="X++ logo">
+        <span>X<span class="plus">++</span></span>
+        <span class="ver">v0.4.1</span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="docs.html">Learn</a>
+        <a href="examples.html">Examples</a>
+        <a href="playground.html" class="active">Playground</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        </button>
+        <a class="btn ghost small" href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+      <button class="icon-btn nav-burger" data-nav-burger aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:44px;padding-bottom:40px">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:26px">
+        <span class="kicker">Web playground</span>
+        <h1>Run X++ <span class="grad-text">right here</span></h1>
+        <p class="lead">A faithful port of the ZITR VM, running entirely in your browser. Same pseudocode, same semantics — quirks faithfully included. Press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run.</p>
+      </div>
+
+      <div class="pg">
+        <!-- editor -->
+        <div class="pg-panel">
+          <div class="pg-panel-head">
+            <span class="title">editor</span>
+            <span class="spacer"></span>
+            <select class="pg-select" id="pg-example" aria-label="Load an example"></select>
+            <button class="btn ghost small" id="pg-reset" title="Reset to the default example">Reset</button>
+          </div>
+          <div class="editor-wrap">
+            <div class="editor-stack">
+              <div class="editor-gutter" id="xpp-gutter">1</div>
+              <div class="editor-area">
+                <pre id="xpp-highlight" aria-hidden="true"></pre>
+                <textarea id="xpp-editor" spellcheck="false" autocapitalize="off" autocomplete="off"
+                  aria-label="X++ code editor"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="pg-panel-head" style="border-top:1px solid var(--border);border-bottom:none">
+            <span class="title">input (stdin)</span>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--faint)">for <span class="code-inline">in</span> reads — one line each</span>
+          </div>
+          <div class="pg-input" style="border-top:none">
+            <textarea id="xpp-input" placeholder="Lines that in "…" will read, top to bottom"></textarea>
+          </div>
+        </div>
+
+        <!-- output -->
+        <div class="pg-panel">
+          <div class="pg-panel-head">
+            <span class="title">output</span>
+            <span class="spacer"></span>
+            <button class="btn ghost small" id="pg-clear">Clear</button>
+            <button class="btn ghost small" id="pg-share">Copy share link</button>
+            <button class="btn run small" id="pg-run">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.9l11-6.86a1.05 1.05 0 0 0 0-1.8l-11-6.86A1.05 1.05 0 0 0 8 5.14z"/></svg>
+              Run
+            </button>
+          </div>
+          <pre class="pg-output" id="xpp-output"><span class="o-dim">output appears here — press Run (or Ctrl/Cmd + Enter)</span></pre>
+          <div class="pg-status" id="pg-status">
+            <span class="led" id="pg-status-led"></span>
+            <span id="pg-status-text">idle</span>
+            <span style="margin-left:auto" id="pg-status-ms"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid cols-3" style="margin-top:34px">
+        <div class="card">
+          <h3>What runs here?</h3>
+          <p>The same strict-pseudocode language as the native VM — ported to JavaScript down to the details: <span class="code-inline">out</span> spacing, <span class="code-inline">nil</span> arithmetic, dict display style, even the <i>sum()</i> accumulator quirk.</p>
+        </div>
+        <div class="card">
+          <h3>Sandbox limits</h3>
+          <p>Runs time out after 8&nbsp;s, recursion caps around ~1,500 frames, and <span class="code-inline">read / write</span> use an in-memory disk. The native VM handles 20,000+ frames and your real filesystem.</p>
+        </div>
+        <div class="card">
+          <h3>Take it further</h3>
+          <p>Learn the whole language on the <a href="docs.html">Learn page</a>, browse <a href="examples.html">copy-paste examples</a>, or grab the real engine from <a href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">GitHub</a> — one command installs everything.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="margin-top:20px">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="f-brand">
+          <a class="brand" href="index.html">
+            <img src="assets/img/xpp-logo.png" alt="X++ logo">
+            <span>X<span class="plus">++</span> <span style="font-weight:500;color:var(--muted)">XPlusPlus</span></span>
+          </a>
+          <p>An intent-driven programming language by Aagastya Verma / Atom Software. Same pseudocode, same ease — now on a real native VM.</p>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h4>Site</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="docs.html">Learn</a></li>
+              <li><a href="examples.html">Examples</a></li>
+              <li><a href="playground.html">Playground</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Project</h4>
+            <ul>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">GitHub ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/blob/main/RELEASE_NOTES_v0.4.1.md" target="_blank" rel="noopener">Release notes ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/issues" target="_blank" rel="noopener">Issues ↗</a></li>
+              <li><a href="https://www.reddit.com/r/xpplang/" target="_blank" rel="noopener">r/xpplang ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>X++ v0.4.1 “Bare Metal” · GPL-3.0-or-later · Aagastya Verma / Atom Software</span>
+        <span>Programming for everyone.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/highlight.js"></script>
+  <script src="assets/js/xpp-interpreter.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/playground.js"></script>
+</body>
+</html>
