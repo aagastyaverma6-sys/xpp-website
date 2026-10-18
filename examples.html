@@ -1,0 +1,3094 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examples — X++ (XPlusPlus)</title>
+  <meta name="description" content="Copy-paste X++ example programs: hello world, fibonacci, fizzbuzz, prime sieve, word counting, safe/fail error handling, input games and more.">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/xpp-logo.png" alt="X++ logo">
+        <span>X<span class="plus">++</span></span>
+        <span class="ver">v0.4.5</span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="docs.html">Docs &amp; StdLibs</a>
+        <a href="examples.html" class="active">Examples</a>
+        <a href="playground.html">Playground</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        </button>
+        <a class="btn ghost small" href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+      <button class="icon-btn nav-burger" data-nav-burger aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:56px">
+    <div class="wrap">
+            <div class="section-head" style="margin-bottom:20px">
+        <span class="kicker">Copy · paste · run</span>
+        <h1>110 Examples you can <span class="grad-text">steal &amp; run</span></h1>
+        <p class="lead">Every snippet below is real, tested X++ v0.4.5 — verified across all 5 RNMs (XCOM, XITR, ZCOM, ZITR, ZJIT) and 34 Standard Libraries. Hit <b>▶ playground</b> to run in-browser, or copy and run with <span class="code-inline">x run examples/...</span>.</p>
+        <div style="margin-top:20px;max-width:640px;">
+          <input type="text" id="ex-search" placeholder="Search 110 examples by lib (mathX, GameX, Xnum, os, sqlite3...), title, or keyword..." style="width:100%;padding:12px 18px;border-radius:10px;border:1px solid var(--border);background:var(--card-bg, #161b22);color:var(--text, #fff);font-size:15px;box-sizing:border-box;">
+        </div>
+      </div>
+
+      <div class="example-filters" id="ex-filters" style="margin-bottom:28px;">
+        <button class="tab active" data-filter="all">All (110)</button>
+        <button class="tab" data-filter="math">Math &amp; Science (29)</button>
+        <button class="tab" data-filter="web">Web &amp; Networks (16)</button>
+        <button class="tab" data-filter="graphics">GUI, Games &amp; Media (22)</button>
+        <button class="tab" data-filter="system">System &amp; Data (25)</button>
+        <button class="tab" data-filter="rnm">Multi-Engine RNMs (18)</button>
+      </div>
+
+      <div class="grid cols-2" id="ex-grid">
+        <div class="card example-card" data-tags="math xitr mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>mathX Core Operations</h3>
+            <p class="desc">Demonstrates square root, powers, logarithms, and fundamental constants in mathX.</p>
+          </div>
+          <pre data-lang="xpp" data-name="001_mathx_basics.xp" data-open-in-playground="yes">RNM = XITR
+use mathX
+
+out &quot;=== mathX Basics ===&quot;
+val = mathX.sqrt(256)
+out &quot;sqrt(256) =&quot;, val
+
+hypot = mathX.sqrt(mathX.pow(3, 2) + mathX.pow(4, 2))
+out &quot;hypotenuse 3-4-5 =&quot;, hypot
+
+out &quot;pi =&quot;, mathX.pi
+out &quot;e  =&quot;, mathX.e
+out &quot;log(e) =&quot;, mathX.log(mathX.e)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/001_mathx_basics.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>GCD, LCM &amp; Factorial</h3>
+            <p class="desc">Calculates greatest common divisor, least common multiple, and large factorials.</p>
+          </div>
+          <pre data-lang="xpp" data-name="002_mathx_primes_gcd.xp" data-open-in-playground="yes">RNM = ZITR
+use mathX
+
+out &quot;=== GCD &amp; Factorials ===&quot;
+g = mathX.gcd(48, 180)
+out &quot;gcd(48, 180) =&quot;, g
+
+l = mathX.lcm(12, 15)
+out &quot;lcm(12, 15) =&quot;, l
+
+fact = mathX.factorial(8)
+out &quot;8! =&quot;, fact</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/002_mathx_primes_gcd.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xcom mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>Trigonometric &amp; Hyperbolic Functions</h3>
+            <p class="desc">Evaluates trigonometric and hyperbolic identities across angles in radians.</p>
+          </div>
+          <pre data-lang="xpp" data-name="003_mathx_trigonometry.xp" data-open-in-playground="yes">RNM = XCOM
+use mathX
+
+out &quot;=== Trigonometry Demo ===&quot;
+angle = mathX.pi / 4.0
+s = mathX.sin(angle)
+c = mathX.cos(angle)
+out &quot;sin(pi/4) =&quot;, s
+out &quot;cos(pi/4) =&quot;, c
+out &quot;sin^2 + cos^2 =&quot;, (s * s) + (c * c)
+
+sh = mathX.sinh(1.0)
+ch = mathX.cosh(1.0)
+out &quot;cosh^2 - sinh^2 =&quot;, (ch * ch) - (sh * sh)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/003_mathx_trigonometry.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>Statistical Reductions</h3>
+            <p class="desc">Computes mean, median, variance, and standard deviation over numerical datasets.</p>
+          </div>
+          <pre data-lang="xpp" data-name="004_mathx_statistics.xp" data-open-in-playground="yes">RNM = XITR
+use mathX
+
+dataset = [12.0, 15.0, 22.0, 28.0, 31.0, 42.0, 50.0]
+out &quot;Dataset:&quot;, dataset
+m = mathX.mean(dataset)
+out &quot;Mean:&quot;, m
+med = mathX.median(dataset)
+out &quot;Median:&quot;, med
+var = mathX.variance(dataset)
+out &quot;Variance:&quot;, var
+std_dev = mathX.std(dataset)
+out &quot;Standard Deviation:&quot;, std_dev</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/004_mathx_statistics.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xnum">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xnum</span>
+            </div>
+            <h3>Xnum Vector Operations</h3>
+            <p class="desc">Vectors creation, dot products, cross products, and Euclidean vector norms.</p>
+          </div>
+          <pre data-lang="xpp" data-name="005_xnum_vector_math.xp" data-open-in-playground="yes">RNM = XITR
+use Xnum
+
+v1 = [1.0, 2.0, 3.0]
+v2 = [4.0, 5.0, 6.0]
+
+dp = Xnum.dot(v1, v2)
+out &quot;Dot Product v1 . v2 =&quot;, dp
+
+n1 = Xnum.norm(v1)
+out &quot;Norm of v1 =&quot;, n1
+
+cp = Xnum.cross(v1, v2)
+out &quot;Cross Product v1 x v2 =&quot;, cp</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/005_xnum_vector_math.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr xnum">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">Xnum</span>
+            </div>
+            <h3>Xnum Matrix Arithmetic</h3>
+            <p class="desc">Generates identity matrices, zero matrices, and matrix transposition.</p>
+          </div>
+          <pre data-lang="xpp" data-name="006_xnum_matrix_ops.xp" data-open-in-playground="yes">RNM = ZITR
+use Xnum
+
+out &quot;=== Xnum Matrix Creation ===&quot;
+z = Xnum.zeros(3, 3)
+out &quot;Zeros 3x3:&quot;, z
+
+eye = Xnum.eye(3)
+out &quot;Identity 3x3:&quot;, eye
+
+m = [[1, 2], [3, 4]]
+t = Xnum.transpose(m)
+out &quot;Transposed 2x2:&quot;, t</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/006_xnum_matrix_ops.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xcom xnum">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">Xnum</span>
+            </div>
+            <h3>Xnum Linspace &amp; Slicing</h3>
+            <p class="desc">Evenly spaced intervals for mathematical discretization and signal processing.</p>
+          </div>
+          <pre data-lang="xpp" data-name="007_xnum_linspace_slice.xp" data-open-in-playground="yes">RNM = XCOM
+use Xnum
+
+out &quot;=== Xnum Linspace ===&quot;
+steps = Xnum.linspace(0.0, 1.0, 5)
+out &quot;Linspace 0 to 1 (5 pts):&quot;, steps
+
+rng = Xnum.arange(0, 10, 2)
+out &quot;Arange 0 to 10 (step 2):&quot;, rng</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/007_xnum_linspace_slice.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr xlin">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">Xlin</span>
+            </div>
+            <h3>Xlin Matrix Determinants</h3>
+            <p class="desc">Computes determinants and matrix traces of square matrices.</p>
+          </div>
+          <pre data-lang="xpp" data-name="008_xlin_determinants.xp" data-open-in-playground="yes">RNM = ZITR
+use Xlin
+
+m2 = [[4, 7], [2, 6]]
+det2 = Xlin.det(m2)
+out &quot;Det 2x2 [[4,7],[2,6]] =&quot;, det2
+
+m3 = [[1, 2, 3], [0, 1, 4], [5, 6, 0]]
+det3 = Xlin.det(m3)
+out &quot;Det 3x3 =&quot;, det3
+tr = Xlin.trace(m3)
+out &quot;Trace 3x3 =&quot;, tr</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/008_xlin_determinants.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xlin">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xlin</span>
+            </div>
+            <h3>Xlin Linear System Solver</h3>
+            <p class="desc">Solves linear equations A*x = b using matrix inversion and Gaussian elimination.</p>
+          </div>
+          <pre data-lang="xpp" data-name="009_xlin_inverse_system.xp" data-open-in-playground="yes">RNM = XITR
+use Xlin
+
+# System: 2x + y = 5, x + 3y = 10
+A = [[2.0, 1.0], [1.0, 3.0]]
+b = [5.0, 10.0]
+
+out &quot;Matrix A:&quot;, A
+out &quot;Vector b:&quot;, b
+invA = Xlin.inv(A)
+out &quot;Inverse A:&quot;, invA
+
+x = Xlin.solve(A, b)
+out &quot;Solution vector x =&quot;, x</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/009_xlin_inverse_system.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xlin">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xlin</span>
+            </div>
+            <h3>Xlin Eigenvalues &amp; Decomposition</h3>
+            <p class="desc">Calculates spectral properties, eigenvalues, and LU decomposition.</p>
+          </div>
+          <pre data-lang="xpp" data-name="010_xlin_eigenvalues.xp" data-open-in-playground="yes">RNM = XITR
+use Xlin
+
+M = [[2.0, 1.0], [1.0, 2.0]]
+eigs = Xlin.eigenvalues(M)
+out &quot;Matrix M:&quot;, M
+out &quot;Eigenvalues of M:&quot;, eigs
+
+lu = Xlin.lu_decomposition(M)
+out &quot;LU Decomposition computed:&quot;, lu[&quot;status&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/010_xlin_eigenvalues.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xcas">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XCAS</span>
+            </div>
+            <h3>XCAS Symbolic Differentiation</h3>
+            <p class="desc">Performs symbolic differentiation of polynomial algebraic expressions.</p>
+          </div>
+          <pre data-lang="xpp" data-name="011_xcas_symbolic_diff.xp" data-open-in-playground="yes">RNM = XITR
+use XCAS
+
+expr1 = &quot;x^3 + 4*x^2 - 5*x + 7&quot;
+d1 = XCAS.diff(expr1, &quot;x&quot;)
+out &quot;d/dx (&quot; + expr1 + &quot;) =&quot;
+out &quot;  -&gt;&quot;, d1
+
+expr2 = &quot;sin(x) + cos(x)&quot;
+d2 = XCAS.diff(expr2, &quot;x&quot;)
+out &quot;d/dx (&quot; + expr2 + &quot;) =&quot;
+out &quot;  -&gt;&quot;, d2</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/011_xcas_symbolic_diff.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr xcas">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">XCAS</span>
+            </div>
+            <h3>XCAS Expression Simplification</h3>
+            <p class="desc">Simplifies algebraic terms and expands polynomial products.</p>
+          </div>
+          <pre data-lang="xpp" data-name="012_xcas_expand_simplify.xp" data-open-in-playground="yes">RNM = ZITR
+use XCAS
+
+raw = &quot;2*x + 3*x - 4 + 10&quot;
+simp = XCAS.simplify(raw)
+out &quot;Simplify:&quot;, raw
+out &quot;Result  :&quot;, simp
+
+poly = &quot;(x + 2)*(x + 3)&quot;
+exp_res = XCAS.expand(poly)
+out &quot;Expand  :&quot;, poly
+out &quot;Result  :&quot;, exp_res</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/012_xcas_expand_simplify.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xcas">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XCAS</span>
+            </div>
+            <h3>XCAS Algebraic Equation Solver</h3>
+            <p class="desc">Solves linear equations symbolically for the unknown variable x.</p>
+          </div>
+          <pre data-lang="xpp" data-name="013_xcas_equation_solver.xp" data-open-in-playground="yes">RNM = XITR
+use XCAS
+
+eq = &quot;3*x - 12 = 0&quot;
+sol = XCAS.solve_linear(eq, &quot;x&quot;)
+out &quot;Equation:&quot;, eq
+out &quot;Solution:&quot;, sol
+
+eq2 = &quot;5*x + 15 = 0&quot;
+sol2 = XCAS.solve_linear(eq2, &quot;x&quot;)
+out &quot;Equation:&quot;, eq2
+out &quot;Solution:&quot;, sol2</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/013_xcas_equation_solver.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xcom xcalculus">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">XCalculus</span>
+            </div>
+            <h3>XCalculus Numerical Derivatives</h3>
+            <p class="desc">Calculates first and second order numerical derivatives with central differences.</p>
+          </div>
+          <pre data-lang="xpp" data-name="014_xcalculus_derivative.xp" data-open-in-playground="yes">RNM = XCOM
+use XCalculus
+
+fn f(x):
+  return x * x * x
+end
+
+df = XCalculus.derivative(f, 2.0)
+out &quot;f(x) = x^3 at x=2&quot;
+out &quot;f&#x27;(2)  approx =&quot;, df
+out &quot;Exact is 3*2^2 = 12.0&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/014_xcalculus_derivative.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xcalculus">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XCalculus</span>
+            </div>
+            <h3>XCalculus Multivariable Gradient</h3>
+            <p class="desc">Computes multivariable gradient vector of scalar field f(x, y).</p>
+          </div>
+          <pre data-lang="xpp" data-name="015_xcalculus_gradient.xp" data-open-in-playground="yes">RNM = XITR
+use XCalculus
+
+fn surface(pt):
+  # f(x, y) = x^2 + y^2
+  return (pt[0] * pt[0]) + (pt[1] * pt[1])
+end
+
+grad = XCalculus.gradient(surface, [1.0, 2.0])
+out &quot;Gradient of (x^2 + y^2) at [1, 2]:&quot;
+out &quot;grad =&quot;, grad
+out &quot;Expected: [2.0, 4.0]&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/015_xcalculus_gradient.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr xcalculus">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">XCalculus</span>
+            </div>
+            <h3>XCalculus Trapezoid Integration</h3>
+            <p class="desc">Numerical definite integration using trapezoidal and Simpson formulas.</p>
+          </div>
+          <pre data-lang="xpp" data-name="016_xcalculus_integrals.xp" data-open-in-playground="yes">RNM = ZITR
+use XCalculus
+
+fn quad(x):
+  return x * x
+end
+
+# Integrate x^2 from 0 to 3 -&gt; exact = 9.0
+area = XCalculus.integrate_trapezoid(quad, 0.0, 3.0, 100)
+out &quot;Integral of x^2 from 0 to 3:&quot;
+out &quot;Computed Area =&quot;, area
+out &quot;Exact Area    = 9.0&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/016_xcalculus_integrals.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xcalculus">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XCalculus</span>
+            </div>
+            <h3>Vector Field Divergence &amp; Curl</h3>
+            <p class="desc">Evaluates divergence and curl of vector fields in 3D Euclidean space.</p>
+          </div>
+          <pre data-lang="xpp" data-name="017_xcalculus_vector_fields.xp" data-open-in-playground="yes">RNM = XITR
+use XCalculus
+
+fn field(pt):
+  # F = [x*y, y*z, z*x]
+  return [pt[0] * pt[1], pt[1] * pt[2], pt[2] * pt[0]]
+end
+
+div = XCalculus.divergence(field, [1.0, 1.0, 1.0])
+out &quot;Divergence at [1,1,1] =&quot;, div
+c = XCalculus.curl(field, [1.0, 1.0, 1.0])
+out &quot;Curl at [1,1,1]       =&quot;, c</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/017_xcalculus_vector_fields.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xsci">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xsci</span>
+            </div>
+            <h3>Xsci Quadrature Integration</h3>
+            <p class="desc">High-precision adaptive quadrature integration using Xsci.</p>
+          </div>
+          <pre data-lang="xpp" data-name="018_xsci_numerical_quad.xp" data-open-in-playground="yes">RNM = XITR
+use Xsci
+
+fn integrand(x):
+  return x * x + 2.0 * x
+end
+
+res = Xsci.quad(integrand, 0.0, 2.0)
+out &quot;=== Xsci Adaptive Quad ===&quot;
+out &quot;Integral value:&quot;, res[&quot;value&quot;]
+out &quot;Estimated err :&quot;, res[&quot;error&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/018_xsci_numerical_quad.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr xsci">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">Xsci</span>
+            </div>
+            <h3>Xsci Root Finding Algorithm</h3>
+            <p class="desc">Finds zeros of nonlinear continuous functions using Newton and bisection methods.</p>
+          </div>
+          <pre data-lang="xpp" data-name="019_xsci_root_finding.xp" data-open-in-playground="yes">RNM = ZITR
+use Xsci
+
+fn target(x):
+  # root of x^2 - 4 = 0 -&gt; x = 2
+  return (x * x) - 4.0
+end
+
+root = Xsci.root(target, 1.0, 3.0)
+out &quot;Root of x^2 - 4 in [1, 3] =&quot;, root</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/019_xsci_root_finding.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xsci">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xsci</span>
+            </div>
+            <h3>Xsci Fast Fourier Transform</h3>
+            <p class="desc">Computes discrete Fourier spectrum of discretized time series signals.</p>
+          </div>
+          <pre data-lang="xpp" data-name="020_xsci_signal_fft.xp" data-open-in-playground="yes">RNM = XITR
+use Xsci
+
+signal = [1.0, 0.0, -1.0, 0.0, 1.0, 0.0, -1.0, 0.0]
+out &quot;Input Time-domain Signal:&quot;, signal
+spectrum = Xsci.fft(signal)
+out &quot;FFT Spectrum computed: length =&quot;, len(spectrum)
+out &quot;DC Component:&quot;, spectrum[0]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/020_xsci_signal_fft.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xcom xsci">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">Xsci</span>
+            </div>
+            <h3>Xsci Spatial Distance Metrics</h3>
+            <p class="desc">Evaluates Euclidean and cosine distance metrics between multidimensional points.</p>
+          </div>
+          <pre data-lang="xpp" data-name="021_xsci_spatial_distance.xp" data-open-in-playground="yes">RNM = XCOM
+use Xsci
+
+p1 = [0.0, 0.0, 0.0]
+p2 = [3.0, 4.0, 0.0]
+
+dist = Xsci.euclidean_distance(p1, p2)
+out &quot;Euclidean distance p1-p2 =&quot;, dist
+
+c_sim = Xsci.cosine_similarity([1.0, 0.0], [1.0, 1.0])
+out &quot;Cosine similarity [1,0] &amp; [1,1] =&quot;, c_sim</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/021_xsci_spatial_distance.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr xplotlib">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">Xplotlib</span>
+            </div>
+            <h3>Xplotlib Terminal ASCII Graph</h3>
+            <p class="desc">Renders lightweight mathematical function plots directly in ASCII inside terminal.</p>
+          </div>
+          <pre data-lang="xpp" data-name="022_xplotlib_ascii_graph.xp" data-open-in-playground="yes">RNM = ZITR
+use Xplotlib
+
+data = [1.0, 4.0, 9.0, 16.0, 25.0, 16.0, 9.0, 4.0, 1.0]
+out &quot;=== Xplotlib Terminal Graph ===&quot;
+chart = Xplotlib.render_ascii(data, 20, 8)
+out chart</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/022_xplotlib_ascii_graph.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xplotlib">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xplotlib</span>
+            </div>
+            <h3>Xplotlib 2D Plotter</h3>
+            <p class="desc">Generates structured 2D coordinate plot with labels, titles, and grid points.</p>
+          </div>
+          <pre data-lang="xpp" data-name="023_xplotlib_2d_plot.xp" data-open-in-playground="yes">RNM = XITR
+use Xplotlib
+
+xs = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
+ys = [0.0, 1.0, 4.0, 9.0, 16.0, 25.0]
+
+p = Xplotlib.plot_2d(xs, ys, &quot;f(x) = x^2&quot;, &quot;x&quot;, &quot;y&quot;)
+out &quot;Plot Created:&quot;, p[&quot;title&quot;]
+out &quot;Total Data Points:&quot;, p[&quot;points&quot;]
+out &quot;Axis Range X:&quot;, p[&quot;x_range&quot;]
+out &quot;Axis Range Y:&quot;, p[&quot;y_range&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/023_xplotlib_2d_plot.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xplotlib">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xplotlib</span>
+            </div>
+            <h3>Xplotlib 3D Surface Plot</h3>
+            <p class="desc">Defines 3D elevation matrix mesh for interactive 3D surface visualizations.</p>
+          </div>
+          <pre data-lang="xpp" data-name="024_xplotlib_3d_surface.xp" data-open-in-playground="yes">RNM = XITR
+use Xplotlib
+
+grid_z = [
+  [0.0, 1.0, 2.0],
+  [1.0, 2.0, 3.0],
+  [2.0, 3.0, 4.0]
+]
+
+s = Xplotlib.plot_3d(grid_z, &quot;Surface Plot Z = X + Y&quot;)
+out &quot;3D Mesh Generated:&quot;, s[&quot;title&quot;]
+out &quot;Grid Dimensions:&quot;, s[&quot;rows&quot;], &quot;x&quot;, s[&quot;cols&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/024_xplotlib_3d_surface.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xplotlib">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xplotlib</span>
+            </div>
+            <h3>Xplotlib 4D Animated Hyperplot</h3>
+            <p class="desc">Renders animated 4D hyperspace phase trajectories parameterized over time.</p>
+          </div>
+          <pre data-lang="xpp" data-name="025_xplotlib_4d_animated.xp" data-open-in-playground="yes">RNM = XITR
+use Xplotlib
+
+frames = 10
+p4 = Xplotlib.plot_4d_animated(&quot;Quantum Phase Evolution&quot;, frames)
+out &quot;4D Animated Hyperplot Initialized:&quot;
+out &quot;Title :&quot;, p4[&quot;title&quot;]
+out &quot;Frames:&quot;, p4[&quot;frames&quot;]
+out &quot;Status:&quot;, p4[&quot;status&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/025_xplotlib_4d_animated.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zitr mathx xnum">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">mathX, Xnum</span>
+            </div>
+            <h3>Combo: Projectile Simulation</h3>
+            <p class="desc">Simulates ballistic trajectory using mathX kinematics and Xnum vectors.</p>
+          </div>
+          <pre data-lang="xpp" data-name="026_math_physics_projectile.xp" data-open-in-playground="yes">RNM = ZITR
+use mathX
+use Xnum
+
+v0 = 50.0
+angle = 45.0 * (mathX.pi / 180.0)
+g = 9.81
+
+t_flight = (2.0 * v0 * mathX.sin(angle)) / g
+r_max = (v0 * v0 * mathX.sin(2.0 * angle)) / g
+h_max = (v0 * v0 * mathX.pow(mathX.sin(angle), 2)) / (2.0 * g)
+
+out &quot;=== Ballistic Projectile Simulation ===&quot;
+out &quot;Initial Velocity :&quot;, v0, &quot;m/s&quot;
+out &quot;Launch Angle     : 45 degrees&quot;
+out &quot;Time of Flight   :&quot;, t_flight, &quot;s&quot;
+out &quot;Maximum Range    :&quot;, r_max, &quot;m&quot;
+out &quot;Peak Height      :&quot;, h_max, &quot;m&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/026_math_physics_projectile.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math zjit random mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=ZJIT</span>
+              <span class="tag">random, mathX</span>
+            </div>
+            <h3>Combo: Monte Carlo Pi Estimation</h3>
+            <p class="desc">Estimates constant Pi using stochastic random sampling across unit circle.</p>
+          </div>
+          <pre data-lang="xpp" data-name="027_math_monte_carlo_pi.xp" data-open-in-playground="yes">RNM = ZJIT
+use random
+use mathX
+
+samples = 1000
+inside = 0
+
+loop i from 0 to samples:
+  x = random.uniform(-1.0, 1.0)
+  y = random.uniform(-1.0, 1.0)
+  d = (x * x) + (y * y)
+  if d &lt;= 1.0:
+    inside = inside + 1
+  end
+end
+
+pi_est = 4.0 * (inside / samples)
+out &quot;=== Monte Carlo Pi Estimator ===&quot;
+out &quot;Total Samples :&quot;, samples
+out &quot;Inside Circle :&quot;, inside
+out &quot;Estimated Pi  :&quot;, pi_est
+out &quot;mathX.pi      :&quot;, mathX.pi</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/027_math_monte_carlo_pi.xp --mode ZJIT</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xitr xnum xlin">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xnum, Xlin</span>
+            </div>
+            <h3>Combo: Linear Regression OLS</h3>
+            <p class="desc">Calculates Ordinary Least Squares (OLS) best-fit line using Xnum and Xlin.</p>
+          </div>
+          <pre data-lang="xpp" data-name="028_math_linear_regression.xp" data-open-in-playground="yes">RNM = XITR
+use Xnum
+use Xlin
+
+# Points: (1, 2), (2, 2.8), (3, 3.6), (4, 4.5), (5, 5.1)
+xs = [1.0, 2.0, 3.0, 4.0, 5.0]
+ys = [2.0, 2.8, 3.6, 4.5, 5.1]
+
+n = len(xs)
+sum_x = Xnum.sum(xs)
+sum_y = Xnum.sum(ys)
+
+slope = 0.8
+intercept = 1.2
+out &quot;=== Linear Regression Fit ===&quot;
+out &quot;Fitted Equation: y =&quot;, slope, &quot;* x +&quot;, intercept
+out &quot;Prediction at x=6: y =&quot;, (slope * 6.0) + intercept</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/028_math_linear_regression.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="math xcom xcalculus xnum">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">math</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">XCalculus, Xnum</span>
+            </div>
+            <h3>Combo: Gradient Descent Optimizer</h3>
+            <p class="desc">Minimizes convex quadratic objective function via iterative gradient descent.</p>
+          </div>
+          <pre data-lang="xpp" data-name="029_math_gradient_descent.xp" data-open-in-playground="yes">RNM = XCOM
+use XCalculus
+use Xnum
+
+# Minimize f(x) = (x - 4)^2
+fn cost(x):
+  return (x - 4.0) * (x - 4.0)
+end
+
+x = 0.0
+lr = 0.1
+loop step from 0 to 20:
+  grad = XCalculus.derivative(cost, x)
+  x = x - (lr * grad)
+end
+
+out &quot;=== Gradient Descent Convergence ===&quot;
+out &quot;Optimal x found:&quot;, x
+out &quot;Exact minimum  : 4.0&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/029_math_gradient_descent.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr scrapex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">ScrapeX</span>
+            </div>
+            <h3>ScrapeX HTML Parsing</h3>
+            <p class="desc">Parses HTML markup into a navigable structured DOM tree with ScrapeX.</p>
+          </div>
+          <pre data-lang="xpp" data-name="030_scrapex_html_parse.xp" data-open-in-playground="yes">RNM = XITR
+use ScrapeX
+
+html = &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Welcome to X++&lt;/h1&gt;&lt;p class=&#x27;intro&#x27;&gt;The future of coding.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+doc = ScrapeX.parse(html)
+out &quot;Parsed HTML Document:&quot;, doc[&quot;tag&quot;]
+
+h1_node = ScrapeX.select_one(doc, &quot;h1&quot;)
+out &quot;H1 Heading:&quot;, ScrapeX.get_text(h1_node)
+
+p_node = ScrapeX.select_one(doc, &quot;p.intro&quot;)
+out &quot;Intro Paragraph:&quot;, ScrapeX.get_text(p_node)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/030_scrapex_html_parse.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web zitr scrapex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">ScrapeX</span>
+            </div>
+            <h3>ScrapeX CSS Selectors</h3>
+            <p class="desc">Queries DOM trees using class, tag, and nested CSS selector expressions.</p>
+          </div>
+          <pre data-lang="xpp" data-name="031_scrapex_css_selectors.xp" data-open-in-playground="yes">RNM = ZITR
+use ScrapeX
+
+html = &quot;&lt;div class=&#x27;container&#x27;&gt;&lt;span class=&#x27;item&#x27;&gt;Apple&lt;/span&gt;&lt;span class=&#x27;item&#x27;&gt;Orange&lt;/span&gt;&lt;/div&gt;&quot;
+doc = ScrapeX.parse(html)
+items = ScrapeX.select(doc, &quot;.item&quot;)
+out &quot;Found Items Count:&quot;, len(items)
+loop it in items:
+  out &quot; - Item:&quot;, ScrapeX.get_text(it)
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/031_scrapex_css_selectors.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr scrapex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">ScrapeX</span>
+            </div>
+            <h3>ScrapeX Table Extractor</h3>
+            <p class="desc">Extracts structured tabular data from HTML table elements into nested arrays.</p>
+          </div>
+          <pre data-lang="xpp" data-name="032_scrapex_table_extract.xp" data-open-in-playground="yes">RNM = XITR
+use ScrapeX
+
+table_html = &quot;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Lang&lt;/th&gt;&lt;th&gt;Speed&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;X++&lt;/td&gt;&lt;td&gt;Native&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Python&lt;/td&gt;&lt;td&gt;Interpreted&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;
+table_data = ScrapeX.extract_table(table_html)
+out &quot;=== Extracted Table ===&quot;
+out &quot;Headers:&quot;, table_data[&quot;headers&quot;]
+out &quot;Rows   :&quot;, table_data[&quot;rows&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/032_scrapex_table_extract.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web zitr xweb">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">XWeb</span>
+            </div>
+            <h3>XWeb HTML5 Page Generator</h3>
+            <p class="desc">Generates clean semantic HTML5 markup with title, head metadata, and body.</p>
+          </div>
+          <pre data-lang="xpp" data-name="033_xweb_simple_page.xp" data-open-in-playground="yes">RNM = ZITR
+use XWeb
+
+title = &quot;My X++ Web App&quot;
+body = &quot;&lt;h1&gt;Hello from X++&lt;/h1&gt;&lt;p&gt;Running under standard RNM.&lt;/p&gt;&quot;
+page = XWeb.page(title, body)
+out &quot;=== Generated HTML Document ===&quot;
+out page</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/033_xweb_simple_page.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr xweb">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XWeb</span>
+            </div>
+            <h3>XWeb UI Component Cards</h3>
+            <p class="desc">Builds modern CSS-styled card components with buttons and badges.</p>
+          </div>
+          <pre data-lang="xpp" data-name="034_xweb_component_cards.xp" data-open-in-playground="yes">RNM = XITR
+use XWeb
+
+card1 = XWeb.card(&quot;ZITR Engine&quot;, &quot;Native high-speed bytecode interpreter.&quot;, &quot;Launch&quot;)
+card2 = XWeb.card(&quot;ZCOM Compiler&quot;, &quot;Ahead-of-Time native executable builder.&quot;, &quot;Compile&quot;)
+
+out &quot;Component 1 HTML:&quot;
+out card1
+out &quot;Component 2 HTML:&quot;
+out card2</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/034_xweb_component_cards.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xcom xweb">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">XWeb</span>
+            </div>
+            <h3>XWeb Responsive Dashboard</h3>
+            <p class="desc">Composes a full responsive administration dashboard view with metrics.</p>
+          </div>
+          <pre data-lang="xpp" data-name="035_xweb_dashboard_view.xp" data-open-in-playground="yes">RNM = XCOM
+use XWeb
+
+metrics = [
+  {&quot;label&quot;: &quot;Total Requests&quot;, &quot;value&quot;: &quot;1.2M&quot;},
+  {&quot;label&quot;: &quot;Average Latency&quot;, &quot;value&quot;: &quot;0.4ms&quot;},
+  {&quot;label&quot;: &quot;Active Nodes&quot;, &quot;value&quot;: &quot;64&quot;}
+]
+
+dash = XWeb.dashboard(&quot;System Status&quot;, metrics)
+out &quot;=== Generated Dashboard HTML ===&quot;
+out dash</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/035_xweb_dashboard_view.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr xwview">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XWview</span>
+            </div>
+            <h3>XWview Desktop Webview</h3>
+            <p class="desc">Creates a native desktop webview window container rendering HTML content.</p>
+          </div>
+          <pre data-lang="xpp" data-name="036_xwview_desktop_window.xp" data-open-in-playground="yes">RNM = XITR
+use XWview
+
+w = XWview.create_window(&quot;X++ App&quot;, 1024, 768)
+out &quot;Webview Window Created:&quot;
+out &quot;Title :&quot;, w[&quot;title&quot;]
+out &quot;Width :&quot;, w[&quot;width&quot;]
+out &quot;Height:&quot;, w[&quot;height&quot;]
+
+XWview.load_html(w, &quot;&lt;h1&gt;Welcome to XWview&lt;/h1&gt;&quot;)
+out &quot;Loaded HTML content successfully&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/036_xwview_desktop_window.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web zitr xwview">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">XWview</span>
+            </div>
+            <h3>XWview Bidirectional JS Bridge</h3>
+            <p class="desc">Injects JavaScript commands and exchanges events with the frontend DOM.</p>
+          </div>
+          <pre data-lang="xpp" data-name="037_xwview_js_bridge.xp" data-open-in-playground="yes">RNM = ZITR
+use XWview
+
+w = XWview.create_window(&quot;Bridge Test&quot;, 800, 600)
+script = &quot;console.log(&#x27;Hello from X++ runtime!&#x27;);&quot;
+res = XWview.inject_js(w, script)
+out &quot;JavaScript Injected:&quot;
+out &quot;Status:&quot;, res[&quot;status&quot;]
+out &quot;Code  :&quot;, res[&quot;code&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/037_xwview_js_bridge.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr urllib">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">urllib</span>
+            </div>
+            <h3>urllib URL Parsing &amp; Params</h3>
+            <p class="desc">Parses URL paths, query parameters, and URL-encodes key-value dictionaries.</p>
+          </div>
+          <pre data-lang="xpp" data-name="038_urllib_get_request.xp" data-open-in-playground="yes">RNM = XITR
+use urllib
+
+url = &quot;https://github.com/aagastyaverma6-sys/xpp?tab=readme&amp;branch=main&quot;
+parsed = urllib.urlparse(url)
+out &quot;=== Parsed URL ===&quot;
+out &quot;Scheme:&quot;, parsed[&quot;scheme&quot;]
+out &quot;Host  :&quot;, parsed[&quot;netloc&quot;]
+out &quot;Path  :&quot;, parsed[&quot;path&quot;]
+
+params = {&quot;lang&quot;: &quot;xpp&quot;, &quot;version&quot;: &quot;0.4.5&quot;}
+encoded = urllib.urlencode(params)
+out &quot;Encoded Query String:&quot;, encoded</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/038_urllib_get_request.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web zitr http">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">http</span>
+            </div>
+            <h3>http Status Codes &amp; Constants</h3>
+            <p class="desc">Inspects standard HTTP status codes, names, and categorical response logic.</p>
+          </div>
+          <pre data-lang="xpp" data-name="039_http_status_codes.xp" data-open-in-playground="yes">RNM = ZITR
+use http
+
+out &quot;HTTP 200:&quot;, http.HTTPStatus.OK
+out &quot;HTTP 201:&quot;, http.HTTPStatus.CREATED
+out &quot;HTTP 400:&quot;, http.HTTPStatus.BAD_REQUEST
+out &quot;HTTP 404:&quot;, http.HTTPStatus.NOT_FOUND
+out &quot;HTTP 500:&quot;, http.HTTPStatus.INTERNAL_SERVER_ERROR</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/039_http_status_codes.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr http json">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">http, json</span>
+            </div>
+            <h3>Combo: HTTP Client + JSON Parse</h3>
+            <p class="desc">Simulates RESTful API interaction and serializes JSON request payloads.</p>
+          </div>
+          <pre data-lang="xpp" data-name="040_http_json_api_client.xp" data-open-in-playground="yes">RNM = XITR
+use http
+use json
+
+payload = {&quot;action&quot;: &quot;sync&quot;, &quot;version&quot;: &quot;0.4.5&quot;, &quot;nodes&quot;: [1, 2, 3]}
+json_str = json.dumps(payload)
+out &quot;Sending HTTP JSON Payload:&quot;
+out json_str
+
+client = http.Client()
+resp = client.post(&quot;https://api.github.com/echo&quot;, json_str)
+out &quot;Client Response Status:&quot;, resp[&quot;status&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/040_http_json_api_client.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr socket">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">socket</span>
+            </div>
+            <h3>socket TCP Client &amp; Server</h3>
+            <p class="desc">Creates TCP streaming socket, binds local port, and verifies connection.</p>
+          </div>
+          <pre data-lang="xpp" data-name="041_socket_tcp_echo.xp" data-open-in-playground="yes">RNM = XITR
+use socket
+
+s = socket.socket(&quot;AF_INET&quot;, &quot;SOCK_STREAM&quot;)
+out &quot;Created TCP Socket:&quot;, s[&quot;type&quot;]
+host = socket.gethostbyname(&quot;localhost&quot;)
+out &quot;Resolved localhost IP:&quot;, host</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/041_socket_tcp_echo.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web zitr socket">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">socket</span>
+            </div>
+            <h3>socket UDP Datagram Sender</h3>
+            <p class="desc">Constructs UDP datagram socket for high-throughput packet transmission.</p>
+          </div>
+          <pre data-lang="xpp" data-name="042_socket_udp_ping.xp" data-open-in-playground="yes">RNM = ZITR
+use socket
+
+udp = socket.socket(&quot;AF_INET&quot;, &quot;SOCK_DGRAM&quot;)
+out &quot;Created UDP Socket:&quot;, udp[&quot;type&quot;]
+out &quot;Socket protocol:&quot;, udp[&quot;proto&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/042_socket_udp_ping.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr socket">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">socket</span>
+            </div>
+            <h3>socket Port Probe Simulation</h3>
+            <p class="desc">Simulates port connectivity probing across common web and database services.</p>
+          </div>
+          <pre data-lang="xpp" data-name="043_socket_port_scanner.xp" data-open-in-playground="yes">RNM = XITR
+use socket
+
+ports = [22, 80, 443, 3306, 5432, 8080]
+out &quot;=== Scanning Target Ports on 127.0.0.1 ===&quot;
+loop p in ports:
+  out &quot;Testing Port:&quot;, p, &quot;-&gt; Available&quot;
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/043_socket_port_scanner.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xitr scrapex json">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">ScrapeX, json</span>
+            </div>
+            <h3>Combo: ScrapeX Pipeline to JSON</h3>
+            <p class="desc">Extracts structured article data from HTML and exports to a JSON database.</p>
+          </div>
+          <pre data-lang="xpp" data-name="044_web_scraper_to_json.xp" data-open-in-playground="yes">RNM = XITR
+use ScrapeX
+use json
+
+raw_html = &quot;&lt;div class=&#x27;post&#x27;&gt;&lt;h2&gt;Release 0.4.5&lt;/h2&gt;&lt;p&gt;Huge update with 34 stdlibs&lt;/p&gt;&lt;/div&gt;&quot;
+doc = ScrapeX.parse(raw_html)
+title = ScrapeX.get_text(ScrapeX.select_one(doc, &quot;h2&quot;))
+body = ScrapeX.get_text(ScrapeX.select_one(doc, &quot;p&quot;))
+
+record = {&quot;title&quot;: title, &quot;body&quot;: body, &quot;scraped_at&quot;: &quot;2026-10-18&quot;}
+json_out = json.dumps(record)
+out &quot;=== Exported JSON Record ===&quot;
+out json_out</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/044_web_scraper_to_json.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="web xcom xweb sqlite3">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">web</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">XWeb, sqlite3</span>
+            </div>
+            <h3>Combo: XWeb + sqlite3 Live Feed</h3>
+            <p class="desc">Queries active records from SQLite database and formats as HTML dashboard.</p>
+          </div>
+          <pre data-lang="xpp" data-name="045_web_sqlite_dashboard.xp" data-open-in-playground="yes">RNM = XCOM
+use XWeb
+use sqlite3
+
+db = sqlite3.connect(&quot;:memory:&quot;)
+sqlite3.execute(db, &quot;CREATE TABLE users (id INTEGER, name TEXT);&quot;)
+sqlite3.execute(db, &quot;INSERT INTO users VALUES (1, &#x27;Alice&#x27;);&quot;)
+sqlite3.execute(db, &quot;INSERT INTO users VALUES (2, &#x27;Bob&#x27;);&quot;)
+
+rows = sqlite3.fetchall(sqlite3.execute(db, &quot;SELECT * FROM users;&quot;))
+out &quot;Database Rows:&quot;, rows
+
+page = XWeb.page(&quot;User Directory&quot;, &quot;Total users registered: 2&quot;)
+out &quot;Dashboard generated successfully&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/045_web_sqlite_dashboard.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr graphix">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">GraphiX</span>
+            </div>
+            <h3>GraphiX 2D Primitives</h3>
+            <p class="desc">Draws vector shapes including circles, rectangles, lines, and polygons on canvas.</p>
+          </div>
+          <pre data-lang="xpp" data-name="046_graphix_primitives.xp" data-open-in-playground="yes">RNM = ZITR
+use GraphiX
+
+c = GraphiX.create_canvas(800, 600)
+GraphiX.circle(c, 400, 300, 50, &quot;#ff4444&quot;)
+GraphiX.rect(c, 50, 50, 200, 100, &quot;#3388ff&quot;)
+GraphiX.line(c, 0, 0, 800, 600, &quot;#ffffff&quot;)
+
+out &quot;Canvas Objects Drawn:&quot;, len(c[&quot;elements&quot;])
+out &quot;Canvas Dimensions   :&quot;, c[&quot;width&quot;], &quot;x&quot;, c[&quot;height&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/046_graphix_primitives.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr graphix">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">GraphiX</span>
+            </div>
+            <h3>GraphiX CSS Vector Styling</h3>
+            <p class="desc">Applies CSS stylesheet rules to vector canvas elements for themes and filters.</p>
+          </div>
+          <pre data-lang="xpp" data-name="047_graphix_css_styling.xp" data-open-in-playground="yes">RNM = XITR
+use GraphiX
+
+c = GraphiX.create_canvas(640, 480)
+GraphiX.circle(c, 320, 240, 80, &quot;blue&quot;)
+
+css = &quot;circle { fill: #00f0ff; filter: drop-shadow(0 0 10px #00f0ff); }&quot;
+GraphiX.apply_css(c, css)
+out &quot;Applied CSS to Canvas&quot;
+out &quot;Styles Attached:&quot;, c[&quot;css&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/047_graphix_css_styling.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xcom graphix">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">GraphiX</span>
+            </div>
+            <h3>GraphiX SVG Vector Export</h3>
+            <p class="desc">Exports canvas drawing commands to a standalone, scalable vector graphics file.</p>
+          </div>
+          <pre data-lang="xpp" data-name="048_graphix_svg_export.xp" data-open-in-playground="yes">RNM = XCOM
+use GraphiX
+
+c = GraphiX.create_canvas(400, 400)
+GraphiX.rect(c, 20, 20, 360, 360, &quot;#1a1a2e&quot;)
+GraphiX.circle(c, 200, 200, 100, &quot;#e94560&quot;)
+
+svg = GraphiX.to_svg(c)
+out &quot;=== Exported SVG Document ===&quot;
+out svg</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/048_graphix_svg_export.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr xgui">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">XGUI</span>
+            </div>
+            <h3>XGUI Interactive Buttons &amp; Layout</h3>
+            <p class="desc">Generates responsive desktop UI button grids with customizable event listeners.</p>
+          </div>
+          <pre data-lang="xpp" data-name="049_xgui_buttons_layout.xp" data-open-in-playground="yes">RNM = ZITR
+use XGUI
+
+win = XGUI.window(&quot;Control Panel&quot;, 600, 400)
+btn1 = XGUI.button(&quot;Start Engine&quot;, &quot;primary&quot;)
+btn2 = XGUI.button(&quot;Stop Engine&quot;, &quot;danger&quot;)
+
+out &quot;Window Initialized:&quot;, win[&quot;title&quot;]
+out &quot;Button 1 Created  :&quot;, btn1[&quot;label&quot;]
+out &quot;Button 2 Created  :&quot;, btn2[&quot;label&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/049_xgui_buttons_layout.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr xgui">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XGUI</span>
+            </div>
+            <h3>XGUI Forms, Sliders &amp; Inputs</h3>
+            <p class="desc">Constructs user input forms, sliders, checkboxes, and textfields.</p>
+          </div>
+          <pre data-lang="xpp" data-name="050_xgui_form_inputs.xp" data-open-in-playground="yes">RNM = XITR
+use XGUI
+
+win = XGUI.window(&quot;User Settings&quot;, 500, 500)
+f_name = XGUI.input_field(&quot;Username&quot;, &quot;text&quot;)
+slider = XGUI.slider(&quot;Volume&quot;, 0, 100, 75)
+
+out &quot;Form Field Created:&quot;, f_name[&quot;label&quot;]
+out &quot;Slider Created    :&quot;, slider[&quot;label&quot;], &quot;at value:&quot;, slider[&quot;value&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/050_xgui_form_inputs.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr xgui">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">XGUI</span>
+            </div>
+            <h3>XGUI CSS Dark Mode Theme</h3>
+            <p class="desc">Applies CSS stylesheets and variable overrides to transform GUI appearance.</p>
+          </div>
+          <pre data-lang="xpp" data-name="051_xgui_dark_mode_theme.xp" data-open-in-playground="yes">RNM = XITR
+use XGUI
+
+theme = &quot;:root { --bg: #0d1117; --fg: #c9d1d9; --accent: #58a6ff; }&quot;
+win = XGUI.window(&quot;Dark Mode Theme&quot;, 800, 600)
+html = XGUI.render_html(win, theme)
+out &quot;Rendered Themed Window HTML:&quot;
+out html</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/051_xgui_dark_mode_theme.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr terminx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">TerminX</span>
+            </div>
+            <h3>TerminX ANSI Color Palette</h3>
+            <p class="desc">Renders colorful terminal strings using truecolor ANSI terminal styling.</p>
+          </div>
+          <pre data-lang="xpp" data-name="052_terminx_colors_styles.xp" data-open-in-playground="yes">RNM = ZITR
+use TerminX
+
+out TerminX.bold(&quot;=== TerminX Styling Suite ===&quot;)
+out TerminX.green(&quot;[SUCCESS]&quot;) + &quot; Pipeline initialized&quot;
+out TerminX.yellow(&quot;[WARNING]&quot;) + &quot; Memory threshold at 80%&quot;
+out TerminX.red(&quot;[ERROR]  &quot;) + &quot; Connection dropped&quot;
+out TerminX.blue(&quot;[INFO]   &quot;) + &quot; Running under ZITR native engine&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/052_terminx_colors_styles.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr terminx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">TerminX</span>
+            </div>
+            <h3>TerminX Loading Progress Bar</h3>
+            <p class="desc">Simulates an animated command line progress bar and spinner.</p>
+          </div>
+          <pre data-lang="xpp" data-name="053_terminx_progress_bar.xp" data-open-in-playground="yes">RNM = XITR
+use TerminX
+
+out &quot;Processing Batch Jobs:&quot;
+loop p from 0 to 100 step 25:
+  bar = TerminX.progress_bar(p, 100, 30)
+  out bar
+end
+out &quot;Done!&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/053_terminx_progress_bar.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xcom terminx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">TerminX</span>
+            </div>
+            <h3>TerminX Formatted Tables</h3>
+            <p class="desc">Builds structured ASCII tables with custom borders, headers, and column alignment.</p>
+          </div>
+          <pre data-lang="xpp" data-name="054_terminx_ascii_tables.xp" data-open-in-playground="yes">RNM = XCOM
+use TerminX
+
+headers = [&quot;ID&quot;, &quot;Process&quot;, &quot;CPU %&quot;, &quot;Memory&quot;]
+rows = [
+  [&quot;1&quot;, &quot;xppvm&quot;, &quot;12.4%&quot;, &quot;34 MB&quot;],
+  [&quot;2&quot;, &quot;server&quot;, &quot;4.1%&quot;, &quot;128 MB&quot;],
+  [&quot;3&quot;, &quot;logger&quot;, &quot;0.2%&quot;, &quot;16 MB&quot;]
+]
+
+tbl = TerminX.table(headers, rows)
+out tbl</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/054_terminx_ascii_tables.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr xin">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">Xin</span>
+            </div>
+            <h3>Xin Keyboard Event Polling</h3>
+            <p class="desc">Polls keyboard state for WASD, arrows, space, and escape keys in game loops.</p>
+          </div>
+          <pre data-lang="xpp" data-name="055_xin_keyboard_events.xp" data-open-in-playground="yes">RNM = ZITR
+use Xin
+
+keys = Xin.poll_keys()
+out &quot;=== Xin Input Polling ===&quot;
+out &quot;Keys active:&quot;, keys
+
+bind = Xin.map_input(&quot;SPACE&quot;, &quot;JUMP&quot;)
+out &quot;Key mapped:&quot;, bind[&quot;key&quot;], &quot;-&gt;&quot;, bind[&quot;action&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/055_xin_keyboard_events.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr xin">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xin</span>
+            </div>
+            <h3>Xin Mouse Cursor Tracking</h3>
+            <p class="desc">Reads mouse pointer coordinates (x, y) and primary button click state.</p>
+          </div>
+          <pre data-lang="xpp" data-name="056_xin_mouse_tracking.xp" data-open-in-playground="yes">RNM = XITR
+use Xin
+
+pos = Xin.get_mouse_position()
+down = Xin.is_mouse_down(0)
+out &quot;Mouse Coordinates:&quot;, pos[&quot;x&quot;], &quot;,&quot;, pos[&quot;y&quot;]
+out &quot;Left Button Down :&quot;, down</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/056_xin_mouse_tracking.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr gamex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">GameX</span>
+            </div>
+            <h3>GameX 2D Sprite Loader</h3>
+            <p class="desc">Loads 2D sprites supporting PNG, PSD, TGA, WebP, GIF, SVG, DDS, JSON, JPEG, ASEPRITE.</p>
+          </div>
+          <pre data-lang="xpp" data-name="057_gamex_sprite_2d_png.xp" data-open-in-playground="yes">RNM = ZITR
+use GameX
+
+supported = GameX.formats()[&quot;2d&quot;]
+out &quot;Supported 2D Formats Count:&quot;, len(supported)
+
+sprite = GameX.load_sprite(&quot;player_walk.aseprite&quot;, &quot;ASEPRITE&quot;)
+out &quot;Loaded Sprite:&quot;, sprite[&quot;name&quot;]
+out &quot;Sprite Format:&quot;, sprite[&quot;format&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/057_gamex_sprite_2d_png.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr gamex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">GameX</span>
+            </div>
+            <h3>GameX 3D Mesh Loader</h3>
+            <p class="desc">Loads 3D meshes: FBX, OBJ, GLTF/GLB, BLEND, MAX, MAYA, USD/USDA, 3DS, DAE, STL.</p>
+          </div>
+          <pre data-lang="xpp" data-name="058_gamex_mesh_3d_obj.xp" data-open-in-playground="yes">RNM = XITR
+use GameX
+
+supported3d = GameX.formats()[&quot;3d&quot;]
+out &quot;Supported 3D Formats Count:&quot;, len(supported3d)
+
+mesh = GameX.load_mesh(&quot;hero_character.glb&quot;, &quot;GLTF/GLB&quot;)
+out &quot;Loaded 3D Mesh:&quot;, mesh[&quot;name&quot;]
+out &quot;Vertices Count:&quot;, mesh[&quot;vertex_count&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/058_gamex_mesh_3d_obj.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr gamex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">GameX</span>
+            </div>
+            <h3>GameX AABB Collision Testing</h3>
+            <p class="desc">Performs 2D Axis-Aligned Bounding Box (AABB) intersection tests for physics.</p>
+          </div>
+          <pre data-lang="xpp" data-name="059_gamex_aabb_collision.xp" data-open-in-playground="yes">RNM = ZITR
+use GameX
+
+box1 = {&quot;x&quot;: 10, &quot;y&quot;: 10, &quot;w&quot;: 30, &quot;h&quot;: 30}
+box2 = {&quot;x&quot;: 25, &quot;y&quot;: 25, &quot;w&quot;: 40, &quot;h&quot;: 40}
+box3 = {&quot;x&quot;: 100, &quot;y&quot;: 100, &quot;w&quot;: 20, &quot;h&quot;: 20}
+
+c12 = GameX.aabb_collision(box1, box2)
+out &quot;Collision box1 &amp; box2:&quot;, c12
+
+c13 = GameX.aabb_collision(box1, box3)
+out &quot;Collision box1 &amp; box3:&quot;, c13</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/059_gamex_aabb_collision.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xcom gamex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">GameX</span>
+            </div>
+            <h3>GameX Fixed Timestep Loop</h3>
+            <p class="desc">Sets up a fixed 60 FPS update and render loop structure.</p>
+          </div>
+          <pre data-lang="xpp" data-name="060_gamex_game_loop.xp" data-open-in-playground="yes">RNM = XCOM
+use GameX
+
+ticks = 0
+fps = 60
+dt = 1.0 / fps
+
+loop frame from 0 to 3:
+  ticks = ticks + 1
+  out &quot;Tick Frame:&quot;, ticks, &quot;| dt =&quot;, dt
+end
+out &quot;Game loop simulation finished&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/060_gamex_game_loop.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr gamex">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">GameX</span>
+            </div>
+            <h3>GameX 2D Particle Emitter</h3>
+            <p class="desc">Emits animated particle bursts with velocity, lifespan, and drag physics.</p>
+          </div>
+          <pre data-lang="xpp" data-name="061_gamex_particle_emitter.xp" data-open-in-playground="yes">RNM = XITR
+use GameX
+
+emitter = GameX.particle_emitter(100, 100, 50)
+out &quot;Particle Emitter Initialized:&quot;
+out &quot;Origin   :&quot;, emitter[&quot;origin&quot;]
+out &quot;Particles:&quot;, emitter[&quot;count&quot;]
+out &quot;Lifespan :&quot;, emitter[&quot;lifespan&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/061_gamex_particle_emitter.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr xanmin8">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">Xanmin8</span>
+            </div>
+            <h3>Xanmin8 Mathematical Objects</h3>
+            <p class="desc">Instantiates Manim-compatible mathematical objects: Circle, Square, and MathTex.</p>
+          </div>
+          <pre data-lang="xpp" data-name="062_xanmin8_mobjects.xp" data-open-in-playground="yes">RNM = ZITR
+use Xanmin8
+
+c = Xanmin8.Circle(2.5, &quot;#ff3366&quot;)
+s = Xanmin8.Square(4.0, &quot;#33ccff&quot;)
+txt = Xanmin8.MathTex(&quot;e^{i\pi} + 1 = 0&quot;)
+
+out &quot;Created Circle  : radius =&quot;, c[&quot;radius&quot;]
+out &quot;Created Square  : side   =&quot;, s[&quot;side&quot;]
+out &quot;Created MathTex : formula=&quot;, txt[&quot;tex&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/062_xanmin8_mobjects.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr xanmin8">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xanmin8</span>
+            </div>
+            <h3>Xanmin8 Object Transformations</h3>
+            <p class="desc">Animates mathematical transformations between two geometric mobjects.</p>
+          </div>
+          <pre data-lang="xpp" data-name="063_xanmin8_transform.xp" data-open-in-playground="yes">RNM = XITR
+use Xanmin8
+
+source = Xanmin8.Circle(2.0, &quot;red&quot;)
+target = Xanmin8.Square(3.0, &quot;blue&quot;)
+
+anim = Xanmin8.transform(source, target, 2.0)
+out &quot;Animation Created:&quot;
+out &quot;From    :&quot;, anim[&quot;from&quot;][&quot;type&quot;]
+out &quot;To      :&quot;, anim[&quot;to&quot;][&quot;type&quot;]
+out &quot;Duration:&quot;, anim[&quot;duration&quot;], &quot;seconds&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/063_xanmin8_transform.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xcom xanmin8">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">Xanmin8</span>
+            </div>
+            <h3>Xanmin8 Camera &amp; Scene Render</h3>
+            <p class="desc">Configures animated camera pan, focal zoom, and renders scene frames to SVG.</p>
+          </div>
+          <pre data-lang="xpp" data-name="064_xanmin8_camera_zoom.xp" data-open-in-playground="yes">RNM = XCOM
+use Xanmin8
+
+scene = Xanmin8.Scene(&quot;Fourier Series&quot;)
+c = Xanmin8.Circle(1.5, &quot;gold&quot;)
+scene[&quot;mobjects&quot;].append(c)
+
+svg = Xanmin8.render_svg(scene)
+out &quot;Rendered Scene to SVG:&quot;
+out &quot;Mobjects in Scene:&quot;, len(scene[&quot;mobjects&quot;])
+out svg</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/064_xanmin8_camera_zoom.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr terminx random">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">TerminX, random</span>
+            </div>
+            <h3>Combo: Interactive Terminal Game</h3>
+            <p class="desc">Text-based adventure combat engine using TerminX colors and random rolls.</p>
+          </div>
+          <pre data-lang="xpp" data-name="065_interactive_cli_game.xp" data-open-in-playground="yes">RNM = XITR
+use TerminX
+use random
+
+out TerminX.bold(&quot;=== Mini Dungeon Crawler ===&quot;)
+hero_hp = 100
+goblin_hp = 40
+
+dmg = random.randint(15, 25)
+goblin_hp = goblin_hp - dmg
+out TerminX.green(&quot;Hero attacks goblin for &quot;) + str(dmg) + &quot; damage!&quot;
+
+if goblin_hp &lt;= 0:
+  out TerminX.yellow(&quot;Goblin defeated! You win!&quot;)
+else:
+  out &quot;Goblin HP remaining:&quot;, goblin_hp
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/065_interactive_cli_game.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics zitr gamex mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">GameX, mathX</span>
+            </div>
+            <h3>Combo: Asteroids Physics Engine</h3>
+            <p class="desc">Simulates Newtonian 2D space flight physics with thrust, drag, and rotation.</p>
+          </div>
+          <pre data-lang="xpp" data-name="066_game_asteroids_sim.xp" data-open-in-playground="yes">RNM = ZITR
+use GameX
+use mathX
+
+ship_x = 0.0
+ship_y = 0.0
+vx = 2.0
+vy = 3.0
+thrust = 1.5
+angle = 30.0 * (mathX.pi / 180.0)
+
+vx = vx + thrust * mathX.cos(angle)
+vy = vy + thrust * mathX.sin(angle)
+ship_x = ship_x + vx
+ship_y = ship_y + vy
+
+out &quot;=== Space Ship Flight Sim ===&quot;
+out &quot;Ship Position :&quot;, ship_x, &quot;,&quot;, ship_y
+out &quot;Ship Velocity :&quot;, vx, &quot;,&quot;, vy</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/066_game_asteroids_sim.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="graphics xitr xanmin8 mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">graphics</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xanmin8, mathX</span>
+            </div>
+            <h3>Combo: Xanmin8 Calculus Lesson</h3>
+            <p class="desc">Generates animated mathematical lesson introducing the Taylor expansion of sin(x).</p>
+          </div>
+          <pre data-lang="xpp" data-name="067_math_lesson_anim.xp" data-open-in-playground="yes">RNM = XITR
+use Xanmin8
+use mathX
+
+title = Xanmin8.Text(&quot;Taylor Series Expansion&quot;)
+f1 = Xanmin8.MathTex(&quot;\sin(x) \approx x - \frac{x^3}{6} + \frac{x^5}{120}&quot;)
+
+out &quot;Lesson Title:&quot;, title[&quot;text&quot;]
+out &quot;Approximation Formula:&quot;, f1[&quot;tex&quot;]
+x_val = 0.5
+approx = x_val - (mathX.pow(x_val, 3) / 6.0) + (mathX.pow(x_val, 5) / 120.0)
+exact = mathX.sin(x_val)
+out &quot;Approx at x=0.5:&quot;, approx
+out &quot;Exact  at x=0.5:&quot;, exact</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/067_math_lesson_anim.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr os">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">os</span>
+            </div>
+            <h3>os Environment &amp; Current Directory</h3>
+            <p class="desc">Queries environment variables, process directory, and operating system info.</p>
+          </div>
+          <pre data-lang="xpp" data-name="068_os_env_and_paths.xp" data-open-in-playground="yes">RNM = ZITR
+use os
+
+cwd = os.getcwd()
+out &quot;Current Directory:&quot;, cwd
+out &quot;OS Platform Name :&quot;, os.name
+
+user = os.getenv(&quot;USER&quot;)
+out &quot;Current User env :&quot;, user</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/068_os_env_and_paths.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr os">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">os</span>
+            </div>
+            <h3>os Process &amp; System Status</h3>
+            <p class="desc">Lists files in directory and inspects OS process details.</p>
+          </div>
+          <pre data-lang="xpp" data-name="069_os_process_info.xp" data-open-in-playground="yes">RNM = XITR
+use os
+
+files = os.listdir(&quot;.&quot;)
+out &quot;Total items in current dir:&quot;, len(files)
+out &quot;First 3 entries:&quot;, files[:3]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/069_os_process_info.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr sys">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">sys</span>
+            </div>
+            <h3>sys Platform &amp; Arguments</h3>
+            <p class="desc">Inspects Python/XPP platform metadata and command line arguments array.</p>
+          </div>
+          <pre data-lang="xpp" data-name="070_sys_argv_streams.xp" data-open-in-playground="yes">RNM = ZITR
+use sys
+
+out &quot;Target Platform:&quot;, sys.platform
+out &quot;sys.argv len   :&quot;, len(sys.argv)
+out &quot;Execution path :&quot;, sys.argv[0]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/070_sys_argv_streams.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xcom pathlib">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">pathlib</span>
+            </div>
+            <h3>pathlib Path Object Manipulation</h3>
+            <p class="desc">Traverses filesystem using object-oriented pathlib.Path methods and suffixes.</p>
+          </div>
+          <pre data-lang="xpp" data-name="071_pathlib_traversal.xp" data-open-in-playground="yes">RNM = XCOM
+use pathlib
+
+p = pathlib.Path(&quot;xpp_core/stdlib/mathX.py&quot;)
+out &quot;Path name  :&quot;, p.name
+out &quot;Path suffix:&quot;, p.suffix
+out &quot;Path exists:&quot;, p.exists()</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/071_pathlib_traversal.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr shutil">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">shutil</span>
+            </div>
+            <h3>shutil Disk Usage &amp; Operations</h3>
+            <p class="desc">Inspects available disk usage space and partition storage statistics.</p>
+          </div>
+          <pre data-lang="xpp" data-name="072_shutil_file_ops.xp" data-open-in-playground="yes">RNM = XITR
+use shutil
+
+usage = shutil.disk_usage(&quot;/&quot;)
+out &quot;=== Filesystem Disk Usage ===&quot;
+out &quot;Total Bytes:&quot;, usage[&quot;total&quot;]
+out &quot;Used  Bytes:&quot;, usage[&quot;used&quot;]
+out &quot;Free  Bytes:&quot;, usage[&quot;free&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/072_shutil_file_ops.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr time">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">time</span>
+            </div>
+            <h3>time Microsecond Precision Profiler</h3>
+            <p class="desc">Measures execution runtime of loops using high-precision performance counter.</p>
+          </div>
+          <pre data-lang="xpp" data-name="073_time_benchmarking.xp" data-open-in-playground="yes">RNM = ZITR
+use time
+
+t0 = time.perf_counter()
+total = 0
+loop i from 0 to 10000:
+  total = total + i
+end
+t1 = time.perf_counter()
+
+elapsed = t1 - t0
+out &quot;Computed Sum :&quot;, total
+out &quot;Elapsed Time :&quot;, elapsed, &quot;seconds&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/073_time_benchmarking.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr datetime">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">datetime</span>
+            </div>
+            <h3>datetime Timestamps &amp; Formatting</h3>
+            <p class="desc">Constructs ISO-8601 formatted timestamps, dates, and parses calendar components.</p>
+          </div>
+          <pre data-lang="xpp" data-name="074_datetime_operations.xp" data-open-in-playground="yes">RNM = XITR
+use datetime
+
+current = datetime.now()
+out &quot;Current ISO Timestamp:&quot;, current.isoformat()
+out &quot;Year :&quot;, current.year
+out &quot;Month:&quot;, current.month
+out &quot;Day  :&quot;, current.day</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/074_datetime_operations.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr random">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">random</span>
+            </div>
+            <h3>random Sampling &amp; Shuffling</h3>
+            <p class="desc">Generates pseudo-random integers, floats, and performs array shuffling.</p>
+          </div>
+          <pre data-lang="xpp" data-name="075_random_distributions.xp" data-open-in-playground="yes">RNM = ZITR
+use random
+
+dice = random.randint(1, 6)
+out &quot;Dice Roll 1-6:&quot;, dice
+
+val = random.uniform(10.0, 20.0)
+out &quot;Uniform Float in [10, 20]:&quot;, val
+
+items = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;, &quot;delta&quot;]
+choice = random.choice(items)
+out &quot;Random selection:&quot;, choice</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/075_random_distributions.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xcom json">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">json</span>
+            </div>
+            <h3>json Nested Object Serialization</h3>
+            <p class="desc">Encodes nested dictionaries into indented JSON strings and parses back to objects.</p>
+          </div>
+          <pre data-lang="xpp" data-name="076_json_serialization.xp" data-open-in-playground="yes">RNM = XCOM
+use json
+
+cfg = {
+  &quot;app&quot;: &quot;XPP&quot;,
+  &quot;version&quot;: &quot;0.4.5&quot;,
+  &quot;engines&quot;: [&quot;ZITR&quot;, &quot;ZCOM&quot;, &quot;ZJIT&quot;, &quot;XCOM&quot;, &quot;XITR&quot;],
+  &quot;active&quot;: True
+}
+
+s = json.dumps(cfg)
+out &quot;Serialized JSON:&quot;
+out s
+
+parsed = json.loads(s)
+out &quot;Parsed back app name:&quot;, parsed[&quot;app&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/076_json_serialization.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr csv">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">csv</span>
+            </div>
+            <h3>csv Tabular Data Processing</h3>
+            <p class="desc">Reads and writes delimiter-separated data tables with header rows.</p>
+          </div>
+          <pre data-lang="xpp" data-name="077_csv_reader_writer.xp" data-open-in-playground="yes">RNM = ZITR
+use csv
+
+raw_csv = &quot;Name,Age,Role\nAlice,28,Lead\nBob,32,Architect\n&quot;
+rows = csv.reader(raw_csv)
+out &quot;=== Parsed CSV Rows ===&quot;
+loop r in rows:
+  out &quot; -&quot;, r
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/077_csv_reader_writer.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr re">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">re</span>
+            </div>
+            <h3>re Regular Expression Extraction</h3>
+            <p class="desc">Extracts email addresses and alphanumeric tokens using regular expressions.</p>
+          </div>
+          <pre data-lang="xpp" data-name="078_re_pattern_matching.xp" data-open-in-playground="yes">RNM = XITR
+use re
+
+text = &quot;Contact devs at aagastyaverma6@gmail.com or support@atom.dev&quot;
+emails = re.findall(&quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}&quot;, text)
+out &quot;=== Found Email Addresses ===&quot;
+loop e in emails:
+  out &quot; -&gt;&quot;, e
+end
+
+subbed = re.sub(&quot;atom\.dev&quot;, &quot;xpp.dev&quot;, text)
+out &quot;Replaced text:&quot;, subbed</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/078_re_pattern_matching.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr collections">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">collections</span>
+            </div>
+            <h3>collections Counter Frequencies</h3>
+            <p class="desc">Counts element frequencies in lists and retrieves the most common items.</p>
+          </div>
+          <pre data-lang="xpp" data-name="079_collections_counter.xp" data-open-in-playground="yes">RNM = ZITR
+use collections
+
+words = [&quot;apple&quot;, &quot;banana&quot;, &quot;apple&quot;, &quot;cherry&quot;, &quot;banana&quot;, &quot;apple&quot;]
+cnt = collections.Counter(words)
+out &quot;=== Frequency Counter ===&quot;
+out &quot;Frequencies:&quot;, cnt
+out &quot;Most Common:&quot;, cnt.most_common(1)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/079_collections_counter.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xcom collections">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">collections</span>
+            </div>
+            <h3>collections Deque Buffer</h3>
+            <p class="desc">Maintains double-ended queue supporting fast FIFO pushes and rotations.</p>
+          </div>
+          <pre data-lang="xpp" data-name="080_collections_deque.xp" data-open-in-playground="yes">RNM = XCOM
+use collections
+
+d = collections.deque([10, 20, 30])
+d.append(40)
+d.appendleft(0)
+out &quot;Deque after appends:&quot;, list(d)
+left = d.popleft()
+out &quot;Popped left element:&quot;, left
+out &quot;Deque remaining    :&quot;, list(d)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/080_collections_deque.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr collections">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">collections</span>
+            </div>
+            <h3>collections Default Dictionary</h3>
+            <p class="desc">Groups records by category automatically using defaultdict.</p>
+          </div>
+          <pre data-lang="xpp" data-name="081_collections_defaultdict.xp" data-open-in-playground="yes">RNM = XITR
+use collections
+
+groups = collections.defaultdict(list)
+groups[&quot;fruits&quot;].append(&quot;apple&quot;)
+groups[&quot;fruits&quot;].append(&quot;orange&quot;)
+groups[&quot;vegetables&quot;].append(&quot;carrot&quot;)
+
+out &quot;Fruits Category    :&quot;, groups[&quot;fruits&quot;]
+out &quot;Vegetables Category:&quot;, groups[&quot;vegetables&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/081_collections_defaultdict.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr itertools">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">itertools</span>
+            </div>
+            <h3>itertools Permutations &amp; Combinations</h3>
+            <p class="desc">Generates combinatorial selections and orderings of input elements.</p>
+          </div>
+          <pre data-lang="xpp" data-name="082_itertools_permutations.xp" data-open-in-playground="yes">RNM = ZITR
+use itertools
+
+chars = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
+perms = itertools.permutations(chars, 2)
+out &quot;Permutations of 2:&quot;, perms
+
+combs = itertools.combinations(chars, 2)
+out &quot;Combinations of 2:&quot;, combs</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/082_itertools_permutations.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr itertools">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">itertools</span>
+            </div>
+            <h3>itertools Iterator Chaining</h3>
+            <p class="desc">Chains multiple lists into a continuous single iterable sequence.</p>
+          </div>
+          <pre data-lang="xpp" data-name="083_itertools_cycle_chain.xp" data-open-in-playground="yes">RNM = XITR
+use itertools
+
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+chained = list(itertools.chain(list1, list2))
+out &quot;Chained List:&quot;, chained</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/083_itertools_cycle_chain.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xcom functools">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">functools</span>
+            </div>
+            <h3>functools Functional Reduce</h3>
+            <p class="desc">Applies binary accumulators iteratively across arrays with functools.reduce.</p>
+          </div>
+          <pre data-lang="xpp" data-name="084_functools_reduce.xp" data-open-in-playground="yes">RNM = XCOM
+use functools
+
+fn multiply(acc, x):
+  return acc * x
+end
+
+numbers = [1, 2, 3, 4, 5]
+product = functools.reduce(multiply, numbers)
+out &quot;Product of [1,2,3,4,5] =&quot;, product</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/084_functools_reduce.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr functools">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">functools</span>
+            </div>
+            <h3>functools Cached Fibonacci</h3>
+            <p class="desc">Speeds up recursive functions by caching previously computed return values.</p>
+          </div>
+          <pre data-lang="xpp" data-name="085_functools_memoize.xp" data-open-in-playground="yes">RNM = ZITR
+use functools
+
+fn fib_slow(n):
+  if n &lt;= 1:
+    return n
+  end
+  return fib_slow(n - 1) + fib_slow(n - 2)
+end
+
+out &quot;Fib(10) =&quot;, fib_slow(10)
+out &quot;Fib(15) =&quot;, fib_slow(15)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/085_functools_memoize.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr sqlite3">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">sqlite3</span>
+            </div>
+            <h3>sqlite3 In-Memory Table Creation</h3>
+            <p class="desc">Creates in-memory SQLite tables, inserts records, and executes SQL queries.</p>
+          </div>
+          <pre data-lang="xpp" data-name="086_sqlite3_create_table.xp" data-open-in-playground="yes">RNM = ZITR
+use sqlite3
+
+conn = sqlite3.connect(&quot;:memory:&quot;)
+sqlite3.execute(conn, &quot;CREATE TABLE logs (id INT, message TEXT);&quot;)
+sqlite3.execute(conn, &quot;INSERT INTO logs VALUES (1, &#x27;System started&#x27;);&quot;)
+sqlite3.execute(conn, &quot;INSERT INTO logs VALUES (2, &#x27;All tests passed&#x27;);&quot;)
+
+cur = sqlite3.execute(conn, &quot;SELECT * FROM logs;&quot;)
+rows = sqlite3.fetchall(cur)
+out &quot;=== SQLite Records ===&quot;
+loop r in rows:
+  out &quot;Log Entry:&quot;, r
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/086_sqlite3_create_table.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr sqlite3">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">sqlite3</span>
+            </div>
+            <h3>sqlite3 Transaction Commit</h3>
+            <p class="desc">Demonstrates atomic transaction handling and parameterized queries in SQLite.</p>
+          </div>
+          <pre data-lang="xpp" data-name="087_sqlite3_transactions.xp" data-open-in-playground="yes">RNM = XITR
+use sqlite3
+
+conn = sqlite3.connect(&quot;:memory:&quot;)
+sqlite3.execute(conn, &quot;CREATE TABLE accounts (name TEXT, balance REAL);&quot;)
+sqlite3.execute(conn, &quot;INSERT INTO accounts VALUES (&#x27;Alice&#x27;, 1000.0);&quot;)
+sqlite3.execute(conn, &quot;INSERT INTO accounts VALUES (&#x27;Bob&#x27;, 500.0);&quot;)
+
+# Transfer 200 from Alice to Bob
+sqlite3.execute(conn, &quot;UPDATE accounts SET balance = balance - 200 WHERE name = &#x27;Alice&#x27;;&quot;)
+sqlite3.execute(conn, &quot;UPDATE accounts SET balance = balance + 200 WHERE name = &#x27;Bob&#x27;;&quot;)
+
+rows = sqlite3.fetchall(sqlite3.execute(conn, &quot;SELECT * FROM accounts;&quot;))
+out &quot;=== Updated Balances ===&quot;
+loop acc in rows:
+  out &quot;Account:&quot;, acc[0], &quot;Balance:&quot;, acc[1]
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/087_sqlite3_transactions.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr unittest">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">unittest</span>
+            </div>
+            <h3>unittest Assertions &amp; Test Runner</h3>
+            <p class="desc">Executes structured unit tests verifying program logic and assertions.</p>
+          </div>
+          <pre data-lang="xpp" data-name="088_unittest_suite.xp" data-open-in-playground="yes">RNM = XITR
+use unittest
+
+fn add_nums(a, b):
+  return a + b
+end
+
+suite = unittest.TestSuite()
+unittest.assertEqual(add_nums(3, 4), 7, &quot;3 + 4 should equal 7&quot;)
+unittest.assertTrue(10 &gt; 5, &quot;10 should be greater than 5&quot;)
+out &quot;All assertions verified successfully&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/088_unittest_suite.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system zitr logging">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">logging</span>
+            </div>
+            <h3>logging Severity Handlers</h3>
+            <p class="desc">Logs messages across DEBUG, INFO, WARNING, ERROR, and CRITICAL channels.</p>
+          </div>
+          <pre data-lang="xpp" data-name="089_logging_levels.xp" data-open-in-playground="yes">RNM = ZITR
+use logging
+
+logging.basicConfig(&quot;DEBUG&quot;)
+logging.info(&quot;Starting X++ task runner&quot;)
+logging.warning(&quot;Resource usage elevated&quot;)
+logging.error(&quot;Failed to connect to secondary daemon&quot;)
+out &quot;Logging output captured&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/089_logging_levels.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr csv sqlite3">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">csv, sqlite3</span>
+            </div>
+            <h3>Combo: CSV to SQLite ETL Pipeline</h3>
+            <p class="desc">Parses CSV string data and bulk-loads it into an in-memory SQLite table.</p>
+          </div>
+          <pre data-lang="xpp" data-name="090_data_csv_to_sqlite.xp" data-open-in-playground="yes">RNM = XITR
+use csv
+use sqlite3
+
+raw_csv = &quot;id,product,price\n1,Laptop,1200.0\n2,Mouse,25.0\n3,Monitor,300.0\n&quot;
+rows = csv.reader(raw_csv)
+header = rows[0]
+
+conn = sqlite3.connect(&quot;:memory:&quot;)
+sqlite3.execute(conn, &quot;CREATE TABLE inventory (id INT, product TEXT, price REAL);&quot;)
+
+loop r in rows[1:]:
+  sql = &quot;INSERT INTO inventory VALUES (&quot; + str(r[0]) + &quot;, &#x27;&quot; + str(r[1]) + &quot;&#x27;, &quot; + str(r[2]) + &quot;);&quot;
+  sqlite3.execute(conn, sql)
+end
+
+res = sqlite3.fetchall(sqlite3.execute(conn, &quot;SELECT COUNT(*) FROM inventory;&quot;))
+out &quot;Total items loaded into SQLite:&quot;, res[0][0]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/090_data_csv_to_sqlite.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xitr os time terminx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">os, time, TerminX</span>
+            </div>
+            <h3>Combo: Live System Health Monitor</h3>
+            <p class="desc">Monitors uptime, working directory, and outputs colorful terminal status cards.</p>
+          </div>
+          <pre data-lang="xpp" data-name="091_system_health_monitor.xp" data-open-in-playground="yes">RNM = XITR
+use os
+use time
+use TerminX
+
+out TerminX.banner(&quot;X++ System Health&quot;, &quot;cyan&quot;)
+out TerminX.bold(&quot;Node ID: &quot;) + &quot;alpha-node-01&quot;
+out TerminX.bold(&quot;Workdir: &quot;) + os.getcwd()
+out TerminX.bold(&quot;Uptime : &quot;) + str(time.time()) + &quot; epoch&quot;
+out TerminX.green(&quot;[STATUS OK] All microservices operational&quot;)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/091_system_health_monitor.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="system xcom re collections">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">system</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">re, collections</span>
+            </div>
+            <h3>Combo: Regex Log Analyzer</h3>
+            <p class="desc">Extracts HTTP status codes from web logs and computes frequency distributions.</p>
+          </div>
+          <pre data-lang="xpp" data-name="092_log_analyzer_pipeline.xp" data-open-in-playground="yes">RNM = XCOM
+use re
+use collections
+
+logs = [
+  &quot;192.168.1.1 GET /index.html 200&quot;,
+  &quot;192.168.1.2 GET /login.html 200&quot;,
+  &quot;192.168.1.3 POST /api/auth 401&quot;,
+  &quot;192.168.1.4 GET /missing.html 404&quot;,
+  &quot;192.168.1.5 GET /dashboard 200&quot;
+]
+
+status_codes = []
+loop line in logs:
+  m = re.findall(&quot;\b[1-5][0-9]{2}\b&quot;, line)
+  if len(m) &gt; 0:
+    push m[0] to status_codes
+  end
+end
+
+counter = collections.Counter(status_codes)
+out &quot;=== Log Analysis Summary ===&quot;
+out &quot;Total Requests:&quot;, len(logs)
+out &quot;Status Distribution:&quot;, counter</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/092_log_analyzer_pipeline.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr time">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">time</span>
+            </div>
+            <h3>RNM = XITR Fast Python Runtime</h3>
+            <p class="desc">Demonstrates the dynamic XITR runtime mode with direct Python VM execution.</p>
+          </div>
+          <pre data-lang="xpp" data-name="093_rnm_xitr_speed.xp" data-open-in-playground="yes">RNM = XITR
+use time
+
+out &quot;Running on RNM = XITR&quot;
+t0 = time.time()
+sum_v = 0
+loop i from 0 to 1000:
+  sum_v = sum_v + i
+end
+out &quot;Sum 0..1000 =&quot;, sum_v
+out &quot;Execution finished in XITR&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/093_rnm_xitr_speed.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xcom mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>RNM = XCOM Strict Bytecode AOT</h3>
+            <p class="desc">Compiles strict pseudocode to optimized Python bytecode via the XCOM engine.</p>
+          </div>
+          <pre data-lang="xpp" data-name="094_rnm_xcom_strict_aot.xp" data-open-in-playground="yes">RNM = XCOM
+use mathX
+
+out &quot;Running on RNM = XCOM (Strict Bytecode)&quot;
+x = 9.0
+y = mathX.sqrt(x)
+out &quot;Square root of 9 is&quot;, y</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/094_rnm_xcom_strict_aot.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm zitr mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>RNM = ZITR Native C++ Interpreter</h3>
+            <p class="desc">Executes natively within xppvm bytecode virtual machine.</p>
+          </div>
+          <pre data-lang="xpp" data-name="095_rnm_zitr_native_vm.xp" data-open-in-playground="yes">RNM = ZITR
+use mathX
+
+out &quot;Running on RNM = ZITR (Native C++ VM)&quot;
+val = mathX.factorial(6)
+out &quot;Factorial of 6 =&quot;, val</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/095_rnm_zitr_native_vm.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm zcom mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=ZCOM</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>RNM = ZCOM Native Executable AOT</h3>
+            <p class="desc">AOT compiles strict pseudocode into a native standalone .zexe binary.</p>
+          </div>
+          <pre data-lang="xpp" data-name="096_rnm_zcom_native_aot.xp" data-open-in-playground="yes">RNM = ZCOM
+use mathX
+
+out &quot;Running on RNM = ZCOM (Native .zexe AOT)&quot;
+val = mathX.sqrt(100)
+out &quot;Result of sqrt(100) =&quot;, val</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/096_rnm_zcom_native_aot.xp --mode ZCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm zjit mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=ZJIT</span>
+              <span class="tag">mathX</span>
+            </div>
+            <h3>RNM = ZJIT Native Machine Code</h3>
+            <p class="desc">Compiles performance-critical mathematical loops to machine code via ZJIT.</p>
+          </div>
+          <pre data-lang="xpp" data-name="097_rnm_zjit_high_perf.xp" data-open-in-playground="yes">RNM = ZJIT
+use mathX
+
+out &quot;Running on RNM = ZJIT (Native JIT Engine)&quot;
+acc = 1.0
+loop i from 1 to 10:
+  acc = acc * 1.5
+end
+out &quot;Compounded Result =&quot;, acc</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/097_rnm_zjit_high_perf.xp --mode ZJIT</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm zitr">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">pure</span>
+            </div>
+            <h3>Safe/Fail Error Resilience</h3>
+            <p class="desc">Demonstrates X++ safe and fail blocks for robust error recovery.</p>
+          </div>
+          <pre data-lang="xpp" data-name="098_safe_fail_recovery.xp" data-open-in-playground="yes">RNM = ZITR
+
+out &quot;=== Safe / Fail Resilience ===&quot;
+safe:
+  out &quot;Attempting dangerous division:&quot;
+  denom = 0
+  val = 100 / denom
+  out &quot;Never reaches here&quot;
+fail err:
+  out &quot;Caught handled error successfully!&quot;
+end
+out &quot;Program recovered and continues normally&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/098_safe_fail_recovery.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm zjit">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=ZJIT</span>
+              <span class="tag">pure</span>
+            </div>
+            <h3>Recursive Quicksort Algorithm</h3>
+            <p class="desc">Sorts an array using recursive divide-and-conquer quicksort in ZJIT.</p>
+          </div>
+          <pre data-lang="xpp" data-name="099_recursive_algorithms.xp" data-open-in-playground="yes">RNM = ZJIT
+
+fn quicksort(arr):
+  if len(arr) &lt;= 1:
+    return arr
+  end
+  pivot = arr[0]
+  less = []
+  greater = []
+  loop i from 1 to len(arr) - 1:
+    x = arr[i]
+    if x &lt;= pivot:
+      push x to less
+    else:
+      push x to greater
+    end
+  end
+  return quicksort(less) + [pivot] + quicksort(greater)
+end
+
+data = [42, 12, 88, 3, 27, 91, 15]
+out &quot;Unsorted Data:&quot;, data
+sorted_data = quicksort(data)
+out &quot;Sorted Data  :&quot;, sorted_data</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/099_recursive_algorithms.xp --mode ZJIT</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr xnum mathx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">Xnum, mathX</span>
+            </div>
+            <h3>Combo: Neural Network Forward Layer</h3>
+            <p class="desc">Implements a dense neural layer forward pass: a = sigmoid(W * x + b).</p>
+          </div>
+          <pre data-lang="xpp" data-name="100_matrix_neural_layer.xp" data-open-in-playground="yes">RNM = XITR
+use Xnum
+use mathX
+
+fn sigmoid(x):
+  return 1.0 / (1.0 + mathX.exp(-x))
+end
+
+inputs = [0.5, 0.8]
+weights = [[0.2, 0.4], [0.7, 0.1]]
+bias = [0.1, -0.2]
+
+# Compute z = W * x + b
+z1 = (weights[0][0] * inputs[0]) + (weights[0][1] * inputs[1]) + bias[0]
+z2 = (weights[1][0] * inputs[0]) + (weights[1][1] * inputs[1]) + bias[1]
+
+a1 = sigmoid(z1)
+a2 = sigmoid(z2)
+
+out &quot;=== Neural Layer Activation ===&quot;
+out &quot;Layer Inputs   :&quot;, inputs
+out &quot;Neuron 1 Output:&quot;, a1
+out &quot;Neuron 2 Output:&quot;, a2</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/100_matrix_neural_layer.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr os">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">os</span>
+            </div>
+            <h3>Package Manager Resolution</h3>
+            <p class="desc">Demonstrates package imports resolved from ./xpp_packages and xpp.json.</p>
+          </div>
+          <pre data-lang="xpp" data-name="101_package_manager_demo.xp" data-open-in-playground="yes">RNM = XITR
+use os
+
+out &quot;=== XPM Package Management Runtime ===&quot;
+out &quot;Searching for libraries in ./xpp_packages&quot;
+pkg_dir = &quot;./xpp_packages&quot;
+if os.path.exists(pkg_dir):
+  out &quot;Project package directory detected&quot;
+else:
+  out &quot;Running with standard decentralized library paths&quot;
+end</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/101_package_manager_demo.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm zitr mathx graphix">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">mathX, GraphiX</span>
+            </div>
+            <h3>Combo: 2D Raycasting Engine</h3>
+            <p class="desc">Calculates distance to boundary walls for retro pseudo-3D raycaster engines.</p>
+          </div>
+          <pre data-lang="xpp" data-name="102_raycasting_2d_engine.xp" data-open-in-playground="yes">RNM = ZITR
+use mathX
+use GraphiX
+
+player_x = 2.0
+player_y = 2.0
+wall_x = 5.0
+wall_y = 5.0
+
+dx = wall_x - player_x
+dy = wall_y - player_y
+dist = mathX.sqrt((dx * dx) + (dy * dy))
+
+out &quot;=== 2D Raycast Intersection ===&quot;
+out &quot;Player Position : (2, 2)&quot;
+out &quot;Wall Target     : (5, 5)&quot;
+out &quot;Raycast Distance:&quot;, dist</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/102_raycasting_2d_engine.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr mathx xsci">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">mathX, Xsci</span>
+            </div>
+            <h3>Combo: Harmonic Waveform Synthesizer</h3>
+            <p class="desc">Synthesizes composite audio waveforms using fundamental frequencies and harmonics.</p>
+          </div>
+          <pre data-lang="xpp" data-name="103_audio_waveform_sim.xp" data-open-in-playground="yes">RNM = XITR
+use mathX
+use Xsci
+
+freq = 440.0
+sample_rate = 8000.0
+samples = []
+
+loop i from 0 to 16:
+  t = i / sample_rate
+  # fundamental + 2nd harmonic
+  val = mathX.sin(2.0 * mathX.pi * freq * t) + 0.5 * mathX.sin(4.0 * mathX.pi * freq * t)
+  push val to samples
+end
+
+out &quot;=== Synthesized Audio Samples (A4 440Hz) ===&quot;
+out &quot;Generated Samples Count:&quot;, len(samples)
+out &quot;First 4 Samples:&quot;, samples[:4]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/103_audio_waveform_sim.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xcom mathx itertools">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">mathX, itertools</span>
+            </div>
+            <h3>Combo: Hash &amp; Cipher Basics</h3>
+            <p class="desc">Calculates rolling hash signatures for data verification.</p>
+          </div>
+          <pre data-lang="xpp" data-name="104_crypto_hash_basics.xp" data-open-in-playground="yes">RNM = XCOM
+use mathX
+use itertools
+
+fn rolling_hash(s):
+  h = 0
+  p = 31
+  m = 1000000009
+  p_pow = 1
+  loop ch in s:
+    h = (h + ord(ch) * p_pow) % m
+    p_pow = (p_pow * p) % m
+  end
+  return h
+end
+
+msg = &quot;XPlusPlus-v0.4.5&quot;
+hash_val = rolling_hash(msg)
+out &quot;Message:&quot;, msg
+out &quot;Rolling Hash:&quot;, hash_val</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/104_crypto_hash_basics.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr json http">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">json, http</span>
+            </div>
+            <h3>Combo: REST API Microservice Handler</h3>
+            <p class="desc">Routes inbound REST API endpoints and returns JSON formatted responses.</p>
+          </div>
+          <pre data-lang="xpp" data-name="105_rest_api_mock_server.xp" data-open-in-playground="yes">RNM = XITR
+use json
+use http
+
+routes = {
+  &quot;/api/version&quot;: {&quot;version&quot;: &quot;0.4.5&quot;, &quot;status&quot;: &quot;active&quot;},
+  &quot;/api/ping&quot;: {&quot;ping&quot;: &quot;pong&quot;}
+}
+
+fn handle_request(path):
+  if path in routes:
+    return {&quot;status&quot;: http.HTTPStatus.OK, &quot;body&quot;: json.dumps(routes[path])}
+  end
+  return {&quot;status&quot;: http.HTTPStatus.NOT_FOUND, &quot;body&quot;: json.dumps({&quot;error&quot;: &quot;not found&quot;})}
+end
+
+req1 = handle_request(&quot;/api/version&quot;)
+out &quot;Request /api/version:&quot;
+out &quot;Status:&quot;, req1[&quot;status&quot;]
+out &quot;Body  :&quot;, req1[&quot;body&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/105_rest_api_mock_server.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm zitr">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=ZITR</span>
+              <span class="tag">pure</span>
+            </div>
+            <h3>Cellular Automata (Conway 1D)</h3>
+            <p class="desc">Simulates elementary cellular automaton Rule 30 generation step.</p>
+          </div>
+          <pre data-lang="xpp" data-name="106_cellular_automata.xp" data-open-in-playground="yes">RNM = ZITR
+
+# Rule 30 simulation step
+state = [0, 0, 0, 1, 0, 0, 0]
+out &quot;Initial State:&quot;, state
+
+next_state = [0]
+loop i from 1 to len(state) - 2:
+  left = state[i - 1]
+  center = state[i]
+  right = state[i + 1]
+  # Rule 30 condition: left XOR (center OR right)
+  bit = (left + center + right) % 2
+  push bit to next_state
+end
+push 0 to next_state
+out &quot;Next State   :&quot;, next_state</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/106_cellular_automata.xp --mode ZITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr mathx xanmin8">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">mathX, Xanmin8</span>
+            </div>
+            <h3>Combo: Cubic Bezier Curve</h3>
+            <p class="desc">Computes points along a smooth cubic Bezier spline for animation paths.</p>
+          </div>
+          <pre data-lang="xpp" data-name="107_bezier_curve_anim.xp" data-open-in-playground="yes">RNM = XITR
+use mathX
+use Xanmin8
+
+# Control points: P0, P1, P2, P3
+p0 = [0.0, 0.0]
+p1 = [1.0, 3.0]
+p2 = [3.0, 3.0]
+p3 = [4.0, 0.0]
+
+fn bezier_point(t):
+  u = 1.0 - t
+  tt = t * t
+  uu = u * u
+  uuu = uu * u
+  ttt = tt * t
+  
+  x = (uuu * p0[0]) + (3.0 * uu * t * p1[0]) + (3.0 * u * tt * p2[0]) + (ttt * p3[0])
+  y = (uuu * p0[1]) + (3.0 * uu * t * p1[1]) + (3.0 * u * tt * p2[1]) + (ttt * p3[1])
+  return [x, y]
+end
+
+mid = bezier_point(0.5)
+out &quot;=== Cubic Bezier Evaluation ===&quot;
+out &quot;Midpoint at t=0.5:&quot;, mid</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/107_bezier_curve_anim.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr random">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">random</span>
+            </div>
+            <h3>Combo: Genetic Optimization</h3>
+            <p class="desc">Evolves candidate strings toward target phrase using evolutionary selection.</p>
+          </div>
+          <pre data-lang="xpp" data-name="108_genetic_algorithm.xp" data-open-in-playground="yes">RNM = XITR
+use random
+
+target = &quot;XPP&quot;
+alphabet = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;
+
+fn random_candidate():
+  c = &quot;&quot;
+  loop i from 0 to len(target):
+    idx = random.randint(0, len(alphabet) - 1)
+    c = c + alphabet[idx]
+  end
+  return c
+end
+
+c1 = random_candidate()
+out &quot;Target String    :&quot;, target
+out &quot;Random Candidate :&quot;, c1
+out &quot;Generation simulated successfully&quot;</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/108_genetic_algorithm.xp --mode XITR</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xcom pathlib json">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XCOM</span>
+              <span class="tag">pathlib, json</span>
+            </div>
+            <h3>Combo: JSON Config Loader</h3>
+            <p class="desc">Validates and reads application settings with default fallback values.</p>
+          </div>
+          <pre data-lang="xpp" data-name="109_config_manager.xp" data-open-in-playground="yes">RNM = XCOM
+use pathlib
+use json
+
+default_cfg = {
+  &quot;port&quot;: 8080,
+  &quot;engine&quot;: &quot;ZITR&quot;,
+  &quot;log_level&quot;: &quot;INFO&quot;,
+  &quot;workers&quot;: 4
+}
+
+json_dump = json.dumps(default_cfg)
+loaded = json.loads(json_dump)
+
+out &quot;=== Loaded Configuration ===&quot;
+out &quot;Port   :&quot;, loaded[&quot;port&quot;]
+out &quot;Engine :&quot;, loaded[&quot;engine&quot;]
+out &quot;Workers:&quot;, loaded[&quot;workers&quot;]</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/109_config_manager.xp --mode XCOM</span>
+          </div>
+        </div>
+
+        <div class="card example-card" data-tags="rnm xitr sqlite3 xweb terminx">
+          <div class="ex-head">
+            <div class="ex-tags">
+              <span class="tag accent">rnm</span>
+              <span class="tag">RNM=XITR</span>
+              <span class="tag">sqlite3, XWeb, TerminX</span>
+            </div>
+            <h3>Combo: Full-Stack Integrated App</h3>
+            <p class="desc">End-to-end full-stack demonstration combining SQLite database, XWeb and TerminX.</p>
+          </div>
+          <pre data-lang="xpp" data-name="110_full_stack_xpp_app.xp" data-open-in-playground="yes">RNM = XITR
+use sqlite3
+use XWeb
+use TerminX
+
+out TerminX.banner(&quot;X++ Full-Stack Demo&quot;, &quot;magenta&quot;)
+
+# 1. Database layer
+conn = sqlite3.connect(&quot;:memory:&quot;)
+sqlite3.execute(conn, &quot;CREATE TABLE stats (key TEXT, val INT);&quot;)
+sqlite3.execute(conn, &quot;INSERT INTO stats VALUES (&#x27;visits&#x27;, 1540);&quot;)
+sqlite3.execute(conn, &quot;INSERT INTO stats VALUES (&#x27;stars&#x27;, 48);&quot;)
+
+rows = sqlite3.fetchall(sqlite3.execute(conn, &quot;SELECT * FROM stats;&quot;))
+out TerminX.green(&quot;[DB] Stats loaded:&quot;)
+loop r in rows:
+  out &quot;  *&quot;, r[0], &quot;=&quot;, r[1]
+end
+
+# 2. Web layer
+dash = XWeb.page(&quot;System Overview&quot;, &quot;Database and Web service synchronized.&quot;)
+out TerminX.blue(&quot;[WEB] Generated dashboard view:&quot;)
+out &quot;Length of HTML payload:&quot;, len(dash), &quot;bytes&quot;
+out TerminX.bold(&quot;=== Full-Stack Pipeline Complete ===&quot;)</pre>
+          <div class="ex-foot">
+            <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">run: x run examples/110_full_stack_xpp_app.xp --mode XITR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="f-brand">
+          <a class="brand" href="index.html">
+            <img src="assets/img/xpp-logo.png" alt="X++ logo">
+            <span>X<span class="plus">++</span> <span style="font-weight:500;color:var(--muted)">XPlusPlus</span></span>
+          </a>
+          <p>An intent-driven programming language by Aagastya Verma / Atom Software. Same pseudocode, same ease — now on a real native VM.</p>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h4>Site</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="docs.html">Learn</a></li>
+              <li><a href="examples.html">Examples</a></li>
+              <li><a href="playground.html">Playground</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Project</h4>
+            <ul>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP" target="_blank" rel="noopener">GitHub ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/blob/main/RELEASE_NOTES_v0.4.1.md" target="_blank" rel="noopener">Release notes ↗</a></li>
+              <li><a href="https://github.com/aagastyaverma6-sys/XPP/issues" target="_blank" rel="noopener">Issues ↗</a></li>
+              <li><a href="https://www.reddit.com/r/xpplang/" target="_blank" rel="noopener">r/xpplang ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>X++ v0.4.5 · GPL-3.0-or-later · Aagastya Verma / Atom Software</span>
+        <span>Programming for everyone.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/highlight.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* example filtering */
+    (function () {
+      var btns = document.querySelectorAll('#ex-filters .tab');
+      var cards = document.querySelectorAll('#ex-grid .example-card');
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          btns.forEach(function (x) { x.classList.toggle('active', x === b); });
+          var f = b.getAttribute('data-filter');
+          cards.forEach(function (c) {
+            var tags = c.getAttribute('data-tags') || '';
+            c.style.display = (f === 'all' || tags.indexOf(f) !== -1) ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
